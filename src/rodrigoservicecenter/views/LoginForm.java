@@ -1,13 +1,5 @@
 
-package rodrigoservicecenter;
-
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Image;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import static jdk.jfr.FlightRecorder.register;
-
+package rodrigoservicecenter.views;
 
 
 public class LoginForm extends javax.swing.JFrame {
@@ -82,17 +74,17 @@ public class LoginForm extends javax.swing.JFrame {
         jPanel1.add(jLabel8);
         jLabel8.setBounds(530, 220, 90, 16);
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/icons8-password-30.png"))); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/resources/icons8-password-30.png"))); // NOI18N
         jLabel10.setText("jLabel10");
         jPanel1.add(jLabel10);
         jLabel10.setBounds(490, 290, 30, 40);
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/loginiconf.gif"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/resources/loginiconf.gif"))); // NOI18N
         jLabel7.setText("jLabel7");
         jPanel1.add(jLabel7);
         jLabel7.setBounds(470, 60, 120, 130);
 
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/icons8-male-user-30.png"))); // NOI18N
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/resources/icons8-male-user-30.png"))); // NOI18N
         jLabel11.setText("jLabel11");
         jPanel1.add(jLabel11);
         jLabel11.setBounds(490, 230, 30, 40);
@@ -156,7 +148,7 @@ public class LoginForm extends javax.swing.JFrame {
         jPanel1.add(jLabel3);
         jLabel3.setBounds(100, 70, 180, 50);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/Untitled design - 2025-05-14T162911.926.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/resources/Untitled design - 2025-05-14T162911.926.png"))); // NOI18N
         jLabel2.setText("jLabel2");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(0, -10, 800, 520);

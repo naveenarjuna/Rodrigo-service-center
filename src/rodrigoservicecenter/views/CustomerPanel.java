@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
-package rodrigoservicecenter;
+package rodrigoservicecenter.views;
 
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
@@ -63,7 +63,7 @@ public class CustomerPanel extends javax.swing.JInternalFrame {
         setPreferredSize(new java.awt.Dimension(1240, 700));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/6.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/resources/6.png"))); // NOI18N
         jLabel1.setText("Customer");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 40, 330, 170));
 
@@ -74,7 +74,7 @@ public class CustomerPanel extends javax.swing.JInternalFrame {
         jButton2.setText("Search");
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, 160, 30));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/icons8-search-40.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/resources/icons8-search-40.png"))); // NOI18N
         jLabel3.setText("jLabel1");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 40, 50));
         getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 250, 30));

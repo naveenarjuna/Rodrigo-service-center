@@ -1,14 +1,8 @@
 
-package rodrigoservicecenter;
+package rodrigoservicecenter.views;
 
 import java.awt.Color;
 import javax.swing.JFrame;
-import rodrigoservicecenter.AppoinmentPanel;
-import rodrigoservicecenter.BookPanel;
-import rodrigoservicecenter.CustomerPanel;
-import rodrigoservicecenter.RegisterPanel;
-import rodrigoservicecenter.SellPanel;
-import rodrigoservicecenter.StockPanel;
 
 public class Dashboard extends javax.swing.JFrame {
 
@@ -91,7 +85,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/icons8-sell-40.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/resources/icons8-sell-40.png"))); // NOI18N
         jLabel5.setText("  Sell Products");
 
         javax.swing.GroupLayout sellLayout = new javax.swing.GroupLayout(sell);
@@ -124,7 +118,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/icons8-appointment-40.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/resources/icons8-appointment-40.png"))); // NOI18N
         jLabel6.setText("  Appointment");
 
         javax.swing.GroupLayout bookLayout = new javax.swing.GroupLayout(book);
@@ -157,7 +151,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/icons8-register-40.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/resources/icons8-register-40.png"))); // NOI18N
         jLabel7.setText("  Register Customer");
 
         javax.swing.GroupLayout registerLayout = new javax.swing.GroupLayout(register);
@@ -190,7 +184,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/icons8-user-35.png"))); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/resources/icons8-user-35.png"))); // NOI18N
         jLabel8.setText("   View Customer");
 
         javax.swing.GroupLayout customerLayout = new javax.swing.GroupLayout(customer);
@@ -223,7 +217,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/icons8-product-40.png"))); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/resources/icons8-product-40.png"))); // NOI18N
         jLabel10.setText("  Check Stock");
 
         javax.swing.GroupLayout stockLayout = new javax.swing.GroupLayout(stock);
@@ -255,7 +249,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/icons8-time-40.png"))); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/resources/icons8-time-40.png"))); // NOI18N
         jLabel9.setText(" Check Appointment");
         jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -346,7 +340,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/icons8-sign-out-48.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/resources/icons8-sign-out-48.png"))); // NOI18N
         jLabel4.setText("Sign Out");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 20, -1, -1));
 
@@ -357,7 +351,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         mainpanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/mechanic-auto-rapair-icon_18591-14025.jpg"))); // NOI18N
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/resources/mechanic-auto-rapair-icon_18591-14025.jpg"))); // NOI18N
         jLabel11.setText("jLabel11");
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N

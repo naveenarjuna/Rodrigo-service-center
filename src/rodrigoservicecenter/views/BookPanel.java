@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
-package rodrigoservicecenter;
+package rodrigoservicecenter.views;
 
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
@@ -146,7 +146,7 @@ public class BookPanel extends javax.swing.JInternalFrame {
         jSeparator1.setForeground(new java.awt.Color(0, 51, 204));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 330, 10));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/icons8-search-40.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/resources/icons8-search-40.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 70, 40, 50));
         getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 80, 250, 30));

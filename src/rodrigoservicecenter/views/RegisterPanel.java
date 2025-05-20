@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
-package rodrigoservicecenter;
+package rodrigoservicecenter.views;
 
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
@@ -60,7 +60,7 @@ public class RegisterPanel extends javax.swing.JInternalFrame {
         setPreferredSize(new java.awt.Dimension(1240, 700));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/4.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/resources/4.png"))); // NOI18N
         jLabel2.setText("register");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 180, 340, 170));
 
