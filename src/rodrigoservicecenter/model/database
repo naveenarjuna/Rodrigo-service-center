@@ -1,0 +1,108 @@
+-- Create Department table
+CREATE TABLE Department (
+    departmentId INT PRIMARY KEY,
+    departmentName VARCHAR(100),
+    location VARCHAR(100)
+);
+
+-- Create Employee table
+CREATE TABLE Employee (
+    employeeId INT PRIMARY KEY,
+    nic INT,
+    name VARCHAR(100),
+    roleName VARCHAR(100),
+    phone INT,
+    email VARCHAR(100),
+    address VARCHAR(200),
+    dateOfJoining DATE,
+    dateOfBirth DATE,
+    workOutlet VARCHAR(100),
+    departmentId INT,
+    FOREIGN KEY (departmentId) REFERENCES Department(departmentId)
+);
+
+CREATE TABLE Customers (
+    customerId INT PRIMARY KEY,
+    username VARCHAR(100),
+    password VARCHAR(100),
+    contactNumber INT,
+    email VARCHAR(100),
+    address VARCHAR(200),
+    registrationDate DATE
+);
+
+CREATE TABLE Vehicle (
+    vehicleId VARCHAR(50) PRIMARY KEY,
+    customerId INT,
+    model VARCHAR(100),
+    year INT,
+    fuelType VARCHAR(50),
+    lastServicedDate DATE,
+    mileage INT,
+    FOREIGN KEY (customerId) REFERENCES Customers(customerId)
+);
+
+CREATE TABLE Appointment (
+    appointmentId INT PRIMARY KEY,
+    customerId INT,
+    vehicleId VARCHAR(50),
+    status VARCHAR(50),
+    serviceName VARCHAR(100),
+    description Varchar(200),
+    scheduledDate DATE,
+    scheduledTime TIME,
+    FOREIGN KEY (customerId) REFERENCES Customers(customerId),
+    FOREIGN KEY (vehicleId) REFERENCES Vehicle(vehicleId)
+);
+
+CREATE TABLE Service (
+    serviceId INT PRIMARY KEY,
+    serviceName VARCHAR(100),
+    description Varchar(200),
+    estimatedDuration TIME,
+    vehicleCompatibility VARCHAR(100),
+    price INT
+);
+
+CREATE TABLE ServiceRecord (
+    recordId INT PRIMARY KEY,
+    appointmentId INT,
+    vehicleId VARCHAR(50),
+    customerId INT,
+    serviceId INT,
+    description Varchar(200),
+    dateOfService DATE,
+    totalCost INT,
+    FOREIGN KEY (appointmentId) REFERENCES Appointment(appointmentId),
+    FOREIGN KEY (vehicleId) REFERENCES Vehicle(vehicleId),
+    FOREIGN KEY (customerId) REFERENCES Customers(customerId),
+    FOREIGN KEY (serviceId) REFERENCES Service(serviceId)
+);
+
+CREATE TABLE ServiceOutlet (
+    outletId INT PRIMARY KEY,
+    outletName VARCHAR(100),
+    location VARCHAR(100),
+    contactNumber INT,
+    email VARCHAR(100)
+);
+
+CREATE TABLE Supplier (
+    supplierId INT PRIMARY KEY,
+    supplierName VARCHAR(100),
+    address VARCHAR(200)
+    contactNumber INT,
+    email VARCHAR(100),
+);
+
+CREATE TABLE Product (
+    productId INT PRIMARY KEY,
+    productName VARCHAR(100),
+    category VARCHAR(100),
+    vehicleCompatibility VARCHAR(100),
+    brand VARCHAR(100),
+    description Varchar(200),
+    unitPrice INT,
+    supplierId INT,
+    FOREIGN KEY (supplierId) REFERENCES Supplier(supplierId)
+);

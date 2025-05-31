@@ -7,8 +7,16 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="jcalendar-1.4" level="project" />
-    <orderEntry type="library" name="swing-layout-1.0.4" level="project" />
-    <orderEntry type="library" name="AbsoluteLayout-RELEASE250" level="project" />
+    <orderEntry type="library" exported="" name="swing-layout-1.0.4" level="project" />
+    <orderEntry type="library" exported="" name="jcalendar-1.4" level="project" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Downloads/AbsoluteLayout-RELEASE250.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
