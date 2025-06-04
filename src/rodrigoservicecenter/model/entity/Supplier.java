@@ -7,6 +7,14 @@ public class Supplier {
     private int contactNumber;
     private String email;
 
+    public Supplier(String address, int contactNumber, String email, int supplierId, String supplierName) {
+        this.address = address;
+        this.contactNumber = contactNumber;
+        this.email = email;
+        this.supplierId = supplierId;
+        this.supplierName = supplierName;
+    }
+
     public int getSupplierId() {
         return supplierId;
     }

@@ -11,6 +11,16 @@ public class Vehicle {
     private Date lastServicedDate;
     private int mileage;
 
+    public Vehicle(Customer customer, String fuelType, Date lastServicedDate, int mileage, String model, String vehicleId, int year) {
+        this.customer = customer;
+        this.fuelType = fuelType;
+        this.lastServicedDate = lastServicedDate;
+        this.mileage = mileage;
+        this.model = model;
+        this.vehicleId = vehicleId;
+        this.year = year;
+    }
+
     public String getVehicleId() {
         return vehicleId;
     }

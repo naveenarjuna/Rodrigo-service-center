@@ -10,6 +10,15 @@ public class Service {
     private String vehicleCompatibility;
     private int price;
 
+    public Service(String description, Time estimatedDuration, int price, int serviceId, String serviceName, String vehicleCompatibility) {
+        this.description = description;
+        this.estimatedDuration = estimatedDuration;
+        this.price = price;
+        this.serviceId = serviceId;
+        this.serviceName = serviceName;
+        this.vehicleCompatibility = vehicleCompatibility;
+    }
+
     public int getServiceId() {
         return serviceId;
     }

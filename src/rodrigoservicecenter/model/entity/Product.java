@@ -10,6 +10,17 @@ public class Product {
     private int unitPrice;
     private Supplier supplier;
 
+    public Product(String brand, String category, String description, int productId, String productName, Supplier supplier, int unitPrice, String vehicleCompatibility) {
+        this.brand = brand;
+        this.category = category;
+        this.description = description;
+        this.productId = productId;
+        this.productName = productName;
+        this.supplier = supplier;
+        this.unitPrice = unitPrice;
+        this.vehicleCompatibility = vehicleCompatibility;
+    }
+
     public int getProductId() {
         return productId;
     }

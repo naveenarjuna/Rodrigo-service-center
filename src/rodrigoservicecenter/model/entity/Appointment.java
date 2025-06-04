@@ -13,6 +13,17 @@ public class Appointment {
     private Date scheduledDate;
     private Time scheduledTime;
 
+    public Appointment(int appointmentId, Customer customer, Vehicle vehicle, String status, String serviceName, String description, Date scheduledDate, Time scheduledTime) {
+        this.appointmentId = appointmentId;
+        this.customer = customer;
+        this.vehicle = vehicle;
+        this.status = status;
+        this.serviceName = serviceName;
+        this.description = description;
+        this.scheduledDate = scheduledDate;
+        this.scheduledTime = scheduledTime;
+    }
+
     public int getAppointmentId() {
         return appointmentId;
     }

@@ -1,0 +1,219 @@
+package rodrigoservicecenter.model;
+
+import rodrigoservicecenter.connect.connect;
+import rodrigoservicecenter.model.entity.Customer;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class CustomerModel {
+
+    // Add customer
+    public boolean addCustomer(Customer customer) {
+        connect db = new connect();
+        Connection con = db.createConnection();
+
+        String sql = "INSERT INTO Customers (customerId, username, password, contactNumber, email, address, registrationDate) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, customer.getCustomerId());
+            ps.setString(2, customer.getUsername());
+            ps.setString(3, customer.getPassword());
+            ps.setInt(4, customer.getContactNumber());
+            ps.setString(5, customer.getEmail());
+            ps.setString(6, customer.getAddress());
+            ps.setDate(7, new Date(customer.getRegistrationDate().getTime()));
+
+            int rowsInserted = ps.executeUpdate();
+            return rowsInserted > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+    // Get all customers
+    public List<Customer> getAllCustomers() {
+        List<Customer> customers = new ArrayList<>();
+        connect db = new connect();
+        Connection con = db.createConnection();
+
+        String sql = "SELECT * FROM Customers";
+
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                int customerId = rs.getInt("customerId");
+                String username = rs.getString("username");
+                String password = rs.getString("password");
+                int contactNumber = rs.getInt("contactNumber");
+                String email = rs.getString("email");
+                String address = rs.getString("address");
+                Date registrationDate = rs.getDate("registrationDate");
+
+                Customer customer = new Customer(customerId, username, password, contactNumber, email, address, registrationDate);
+                customers.add(customer);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return customers;
+    }
+
+
+    // Get customer by ID
+    public Customer getCustomerById(int id) {
+        Customer customer = null;
+        connect db = new connect();
+        Connection con = db.createConnection();
+
+        String sql = "SELECT * FROM Customers WHERE customerId = ?";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                int customerId = rs.getInt("customerId");
+                String username = rs.getString("username");
+                String password = rs.getString("password");
+                int contactNumber = rs.getInt("contactNumber");
+                String email = rs.getString("email");
+                String address = rs.getString("address");
+                Date registrationDate = rs.getDate("registrationDate");
+
+                customer = new Customer(customerId, username, password, contactNumber, email, address, registrationDate);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return customer;
+    }
+
+
+
+
+    // Update an existing customer
+    public boolean updateCustomer(Customer customer) {
+        connect db = new connect();
+        Connection con = db.createConnection();
+
+        String sql = "UPDATE Customers SET username = ?, password = ?, contactNumber = ?, email = ?, address = ?, registrationDate = ? WHERE customerId = ?";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, customer.getUsername());
+            ps.setString(2, customer.getPassword());
+            ps.setInt(3, customer.getContactNumber());
+            ps.setString(4, customer.getEmail());
+            ps.setString(5, customer.getAddress());
+            ps.setDate(6, new java.sql.Date(customer.getRegistrationDate().getTime()));
+            ps.setInt(7, customer.getCustomerId());
+
+            int rowsAffected = ps.executeUpdate();
+            return rowsAffected > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+
+
+    // Delete a customer by ID
+    public boolean deleteCustomer(int id) {
+        connect db = new connect();
+        Connection con = db.createConnection();
+
+        String sql = "DELETE FROM Customers WHERE customerId = ?";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            int rowsAffected = ps.executeUpdate();
+            return rowsAffected > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+    // Login
+    public Customer loginCustomer(String username, String password) {
+        Customer customer = null;
+        connect db = new connect();
+        Connection con = db.createConnection();
+
+        String sql = "SELECT * FROM Customers WHERE username = ? AND password = ?";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, username);
+            ps.setString(2, password);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                int customerId = rs.getInt("customerId");
+                int contactNumber = rs.getInt("contactNumber");
+                String email = rs.getString("email");
+                String address = rs.getString("address");
+                Date registrationDate = rs.getDate("registrationDate");
+
+                customer = new Customer(customerId, username, password, contactNumber, email, address, registrationDate);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return customer;
+    }
+
+
+    public List<Customer> searchCustomersByName(String keyword) {
+        List<Customer> customers = new ArrayList<>();
+        connect db = new connect();
+        Connection con = db.createConnection();
+
+        String sql = "SELECT * FROM Customers WHERE username LIKE ?";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, "%" + keyword + "%");
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Customer customer = new Customer(
+                        rs.getInt("customerId"),
+                        rs.getString("username"),
+                        rs.getString("password"),
+                        rs.getInt("contactNumber"),
+                        rs.getString("email"),
+                        rs.getString("address"),
+                        rs.getDate("registrationDate")
+                );
+                customers.add(customer);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return customers;
+    }
+}

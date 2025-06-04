@@ -15,6 +15,20 @@ public class Employee {
     private String workOutlet;
     private Department department;
 
+    public Employee(String roleName, String address, Date dateOfBirth, Date dateOfJoining, Department department, String email, int employeeId, String name, int nic, int phone, String workOutlet) {
+        this.roleName = roleName;
+        this.address = address;
+        this.dateOfBirth = dateOfBirth;
+        this.dateOfJoining = dateOfJoining;
+        this.department = department;
+        this.email = email;
+        this.employeeId = employeeId;
+        this.name = name;
+        this.nic = nic;
+        this.phone = phone;
+        this.workOutlet = workOutlet;
+    }
+
     public int getNic() {
         return nic;
     }

@@ -12,6 +12,17 @@ public class ServiceRecord {
     private Date dateOfService;
     private int totalCost;
 
+    public ServiceRecord(Appointment appointment, Customer customer, Date dateOfService, String description, int recordId, Service service, int totalCost, Vehicle vehicle) {
+        this.appointment = appointment;
+        this.customer = customer;
+        this.dateOfService = dateOfService;
+        this.description = description;
+        this.recordId = recordId;
+        this.service = service;
+        this.totalCost = totalCost;
+        this.vehicle = vehicle;
+    }
+
     public int getRecordId() {
         return recordId;
     }

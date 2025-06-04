@@ -7,6 +7,14 @@ public class ServiceOutlet {
     private int contactNumber;
     private String email;
 
+    public ServiceOutlet(int contactNumber, String email, String location, int outletId, String outletName) {
+        this.contactNumber = contactNumber;
+        this.email = email;
+        this.location = location;
+        this.outletId = outletId;
+        this.outletName = outletName;
+    }
+
     public int getOutletId() {
         return outletId;
     }
