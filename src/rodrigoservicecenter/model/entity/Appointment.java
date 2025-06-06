@@ -7,16 +7,18 @@ public class Appointment {
     private int appointmentId;
     private Customer customer;
     private Vehicle vehicle;
+    private ServiceOutlet outlet;
     private String status;
     private String serviceName;
     private String description;
     private Date scheduledDate;
     private Time scheduledTime;
 
-    public Appointment(int appointmentId, Customer customer, Vehicle vehicle, String status, String serviceName, String description, Date scheduledDate, Time scheduledTime) {
+    public Appointment(int appointmentId, Customer customer, Vehicle vehicle, ServiceOutlet outlet, String status, String serviceName, String description, Date scheduledDate, Time scheduledTime) {
         this.appointmentId = appointmentId;
         this.customer = customer;
         this.vehicle = vehicle;
+        this.outlet = outlet;
         this.status = status;
         this.serviceName = serviceName;
         this.description = description;
@@ -50,6 +52,14 @@ public class Appointment {
 
     public String getStatus() {
         return status;
+    }
+
+    public ServiceOutlet getOutlet() {
+        return outlet;
+    }
+
+    public void setOutlet(ServiceOutlet outlet) {
+        this.outlet = outlet;
     }
 
     public void setStatus(String status) {

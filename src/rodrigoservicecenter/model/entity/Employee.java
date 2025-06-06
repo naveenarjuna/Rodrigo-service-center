@@ -6,6 +6,7 @@ public class Employee {
     private int employeeId;
     private int nic;
     private String name;
+    private String password;
     private String roleName;
     private int phone;
     private String email;
@@ -15,18 +16,19 @@ public class Employee {
     private String workOutlet;
     private Department department;
 
-    public Employee(String roleName, String address, Date dateOfBirth, Date dateOfJoining, Department department, String email, int employeeId, String name, int nic, int phone, String workOutlet) {
-        this.roleName = roleName;
-        this.address = address;
-        this.dateOfBirth = dateOfBirth;
-        this.dateOfJoining = dateOfJoining;
-        this.department = department;
-        this.email = email;
+    public Employee(int employeeId, int nic, String name, String password, String roleName, int phone, String email, String address, Date dateOfJoining, Date dateOfBirth, String workOutlet, Department department) {
         this.employeeId = employeeId;
-        this.name = name;
         this.nic = nic;
+        this.name = name;
+        this.password = password;
+        this.roleName = roleName;
         this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.dateOfJoining = dateOfJoining;
+        this.dateOfBirth = dateOfBirth;
         this.workOutlet = workOutlet;
+        this.department = department;
     }
 
     public int getNic() {
@@ -115,5 +117,13 @@ public class Employee {
 
     public void setDepartment(Department department) {
         this.department = department;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

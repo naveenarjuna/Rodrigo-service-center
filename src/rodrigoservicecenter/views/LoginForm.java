@@ -1,11 +1,14 @@
-
 package rodrigoservicecenter.views;
 
 
+import rodrigoservicecenter.controller.EmployeeController;
+import rodrigoservicecenter.model.entity.Employee;
+
 public class LoginForm extends javax.swing.JFrame {
 
-    
-  
+    EmployeeController employeeController = new EmployeeController();
+
+
     public LoginForm() {
         setUndecorated(true); // Remove title bar
         initComponents();
@@ -172,14 +175,21 @@ public class LoginForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Dashboard dash1 = new Dashboard();
-        dash1.setVisible(true);
-        dash1.pack();
-        
-        
-        
-        
-        
+        String username = MyTextField.getText();
+        String password = new String(jPasswordField1.getPassword()); // getPassword() returns a char[]
+
+        Employee loggedInEmployee = employeeController.loginEmployee(username, password);
+
+        if (loggedInEmployee != null) {
+            // Login successful
+            Dashboard dash1 = new Dashboard(loggedInEmployee);
+            dash1.setVisible(true);
+            dash1.pack();
+            this.dispose(); // Close the login form
+        } else {
+            // Login failed
+            javax.swing.JOptionPane.showMessageDialog(this, "Invalid username or password", "Login Failed", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void MyTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MyTextFieldActionPerformed

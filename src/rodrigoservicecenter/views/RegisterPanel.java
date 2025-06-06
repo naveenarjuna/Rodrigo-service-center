@@ -35,24 +35,24 @@ public class RegisterPanel extends javax.swing.JInternalFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        MyTextField = new javax.swing.JTextField();
+        name = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel8 = new javax.swing.JLabel();
-        MyTextField1 = new javax.swing.JTextField();
+        email = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel10 = new javax.swing.JLabel();
-        MyTextField2 = new javax.swing.JTextField();
+        address = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
         jLabel11 = new javax.swing.JLabel();
-        MyTextField3 = new javax.swing.JTextField();
+        nic = new javax.swing.JTextField();
         jSeparator5 = new javax.swing.JSeparator();
         jLabel12 = new javax.swing.JLabel();
-        MyTextField4 = new javax.swing.JTextField();
+        vehicles = new javax.swing.JTextField();
         jSeparator6 = new javax.swing.JSeparator();
         jLabel16 = new javax.swing.JLabel();
-        jButton8 = new javax.swing.JButton();
-        jLabel17 = new javax.swing.JLabel();
-        MyTextField5 = new javax.swing.JTextField();
+        register_bt = new javax.swing.JButton();
+        username = new javax.swing.JLabel();
+        mobile_number = new javax.swing.JTextField();
         jSeparator7 = new javax.swing.JSeparator();
         jLabel18 = new javax.swing.JLabel();
 
@@ -60,7 +60,7 @@ public class RegisterPanel extends javax.swing.JInternalFrame {
         setPreferredSize(new java.awt.Dimension(1240, 700));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/resources/4.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/4.png"))); // NOI18N
         jLabel2.setText("register");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 180, 340, 170));
 
@@ -77,15 +77,15 @@ public class RegisterPanel extends javax.swing.JInternalFrame {
         jLabel15.setText("Lorem Ipsum is simply dummy text of the printing and typesetting industry. ");
         getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 430, -1, -1));
 
-        MyTextField.setText("Enter name");
-        MyTextField.setActionCommand("null");
-        MyTextField.setBorder(null);
-        MyTextField.addActionListener(new java.awt.event.ActionListener() {
+        name.setText("Enter name");
+        name.setActionCommand("null");
+        name.setBorder(null);
+        name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MyTextFieldActionPerformed(evt);
+                nameActionPerformed(evt);
             }
         });
-        getContentPane().add(MyTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 360, 30));
+        getContentPane().add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 360, 30));
 
         jSeparator2.setForeground(new java.awt.Color(0, 51, 153));
         getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, 360, 10));
@@ -95,15 +95,15 @@ public class RegisterPanel extends javax.swing.JInternalFrame {
         jLabel8.setText("Name");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, 140, -1));
 
-        MyTextField1.setText("E-mail");
-        MyTextField1.setActionCommand("null");
-        MyTextField1.setBorder(null);
-        MyTextField1.addActionListener(new java.awt.event.ActionListener() {
+        email.setText("E-mail");
+        email.setActionCommand("null");
+        email.setBorder(null);
+        email.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MyTextField1ActionPerformed(evt);
+                emailActionPerformed(evt);
             }
         });
-        getContentPane().add(MyTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 360, 360, 30));
+        getContentPane().add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 360, 360, 30));
 
         jSeparator3.setForeground(new java.awt.Color(0, 51, 153));
         getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 390, 360, 10));
@@ -113,15 +113,15 @@ public class RegisterPanel extends javax.swing.JInternalFrame {
         jLabel10.setText("E-mail");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, 140, -1));
 
-        MyTextField2.setText("Address");
-        MyTextField2.setActionCommand("null");
-        MyTextField2.setBorder(null);
-        MyTextField2.addActionListener(new java.awt.event.ActionListener() {
+        address.setText("Address");
+        address.setActionCommand("null");
+        address.setBorder(null);
+        address.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MyTextField2ActionPerformed(evt);
+                addressActionPerformed(evt);
             }
         });
-        getContentPane().add(MyTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 430, 360, 30));
+        getContentPane().add(address, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 430, 360, 30));
 
         jSeparator4.setForeground(new java.awt.Color(0, 51, 153));
         getContentPane().add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 460, 360, 10));
@@ -131,15 +131,15 @@ public class RegisterPanel extends javax.swing.JInternalFrame {
         jLabel11.setText("Address");
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 410, 160, -1));
 
-        MyTextField3.setText("Enter name");
-        MyTextField3.setActionCommand("null");
-        MyTextField3.setBorder(null);
-        MyTextField3.addActionListener(new java.awt.event.ActionListener() {
+        nic.setText("Enter name");
+        nic.setActionCommand("null");
+        nic.setBorder(null);
+        nic.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MyTextField3ActionPerformed(evt);
+                nicActionPerformed(evt);
             }
         });
-        getContentPane().add(MyTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 360, 30));
+        getContentPane().add(nic, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 360, 30));
 
         jSeparator5.setForeground(new java.awt.Color(0, 51, 153));
         getContentPane().add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, 360, 10));
@@ -149,15 +149,15 @@ public class RegisterPanel extends javax.swing.JInternalFrame {
         jLabel12.setText("NIC");
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, 130, -1));
 
-        MyTextField4.setText("Vehicles");
-        MyTextField4.setActionCommand("null");
-        MyTextField4.setBorder(null);
-        MyTextField4.addActionListener(new java.awt.event.ActionListener() {
+        vehicles.setText("Vehicles");
+        vehicles.setActionCommand("null");
+        vehicles.setBorder(null);
+        vehicles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MyTextField4ActionPerformed(evt);
+                vehiclesActionPerformed(evt);
             }
         });
-        getContentPane().add(MyTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 500, 360, 30));
+        getContentPane().add(vehicles, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 500, 360, 30));
 
         jSeparator6.setForeground(new java.awt.Color(0, 51, 153));
         getContentPane().add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 530, 360, 10));
@@ -167,27 +167,27 @@ public class RegisterPanel extends javax.swing.JInternalFrame {
         jLabel16.setText("Vehicles");
         getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 480, 160, -1));
 
-        jButton8.setBackground(new java.awt.Color(0, 51, 153));
-        jButton8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton8.setForeground(new java.awt.Color(255, 255, 255));
-        jButton8.setText("Register");
-        jButton8.setBorder(null);
-        getContentPane().add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 570, 360, 30));
+        register_bt.setBackground(new java.awt.Color(0, 51, 153));
+        register_bt.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        register_bt.setForeground(new java.awt.Color(255, 255, 255));
+        register_bt.setText("Register");
+        register_bt.setBorder(null);
+        getContentPane().add(register_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 570, 360, 30));
 
-        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(0, 102, 204));
-        jLabel17.setText("NIMAL");
-        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 350, -1, -1));
+        username.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        username.setForeground(new java.awt.Color(0, 102, 204));
+        username.setText("NIMAL");
+        getContentPane().add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 350, -1, -1));
 
-        MyTextField5.setText("Enter name");
-        MyTextField5.setActionCommand("null");
-        MyTextField5.setBorder(null);
-        MyTextField5.addActionListener(new java.awt.event.ActionListener() {
+        mobile_number.setText("Enter name");
+        mobile_number.setActionCommand("null");
+        mobile_number.setBorder(null);
+        mobile_number.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MyTextField5ActionPerformed(evt);
+                mobile_numberActionPerformed(evt);
             }
         });
-        getContentPane().add(MyTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 360, 30));
+        getContentPane().add(mobile_number, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 360, 30));
 
         jSeparator7.setForeground(new java.awt.Color(0, 51, 153));
         getContentPane().add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 320, 360, 10));
@@ -200,39 +200,34 @@ public class RegisterPanel extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void MyTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MyTextFieldActionPerformed
+    private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_MyTextFieldActionPerformed
+    }//GEN-LAST:event_nameActionPerformed
 
-    private void MyTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MyTextField1ActionPerformed
+    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_MyTextField1ActionPerformed
+    }//GEN-LAST:event_emailActionPerformed
 
-    private void MyTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MyTextField2ActionPerformed
+    private void addressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_MyTextField2ActionPerformed
+    }//GEN-LAST:event_addressActionPerformed
 
-    private void MyTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MyTextField3ActionPerformed
+    private void nicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nicActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_MyTextField3ActionPerformed
+    }//GEN-LAST:event_nicActionPerformed
 
-    private void MyTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MyTextField4ActionPerformed
+    private void vehiclesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vehiclesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_MyTextField4ActionPerformed
+    }//GEN-LAST:event_vehiclesActionPerformed
 
-    private void MyTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MyTextField5ActionPerformed
+    private void mobile_numberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mobile_numberActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_MyTextField5ActionPerformed
+    }//GEN-LAST:event_mobile_numberActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField MyTextField;
-    private javax.swing.JTextField MyTextField1;
-    private javax.swing.JTextField MyTextField2;
-    private javax.swing.JTextField MyTextField3;
-    private javax.swing.JTextField MyTextField4;
-    private javax.swing.JTextField MyTextField5;
-    private javax.swing.JButton jButton8;
+    private javax.swing.JTextField address;
+    private javax.swing.JTextField email;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -240,7 +235,6 @@ public class RegisterPanel extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel8;
@@ -250,5 +244,11 @@ public class RegisterPanel extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JTextField mobile_number;
+    private javax.swing.JTextField name;
+    private javax.swing.JTextField nic;
+    private javax.swing.JButton register_bt;
+    private javax.swing.JLabel username;
+    private javax.swing.JTextField vehicles;
     // End of variables declaration//GEN-END:variables
 }

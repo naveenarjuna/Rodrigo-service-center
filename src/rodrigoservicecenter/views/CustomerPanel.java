@@ -33,61 +33,61 @@ public class CustomerPanel extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        search_bt = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        MyTextField = new javax.swing.JTextField();
+        search_customer = new javax.swing.JTextField();
+        name = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel8 = new javax.swing.JLabel();
-        MyTextField1 = new javax.swing.JTextField();
+        email = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel10 = new javax.swing.JLabel();
-        MyTextField2 = new javax.swing.JTextField();
+        address = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
         jLabel11 = new javax.swing.JLabel();
-        MyTextField3 = new javax.swing.JTextField();
+        nic = new javax.swing.JTextField();
         jSeparator5 = new javax.swing.JSeparator();
         jLabel12 = new javax.swing.JLabel();
-        MyTextField4 = new javax.swing.JTextField();
+        vehical = new javax.swing.JTextField();
         jSeparator6 = new javax.swing.JSeparator();
         jLabel16 = new javax.swing.JLabel();
-        MyTextField5 = new javax.swing.JTextField();
+        mobile_number = new javax.swing.JTextField();
         jSeparator7 = new javax.swing.JSeparator();
         jLabel18 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jButton8 = new javax.swing.JButton();
+        update_bt = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        customers = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1240, 700));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/resources/6.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/6.png"))); // NOI18N
         jLabel1.setText("Customer");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 40, 330, 170));
 
         jLabel2.setText("jLabel2");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1158, 864, -1, -1));
 
-        jButton2.setForeground(new java.awt.Color(102, 102, 102));
-        jButton2.setText("Search");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, 160, 30));
+        search_bt.setForeground(new java.awt.Color(102, 102, 102));
+        search_bt.setText("Search");
+        getContentPane().add(search_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, 160, 30));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/resources/icons8-search-40.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/icons8-search-40.png"))); // NOI18N
         jLabel3.setText("jLabel1");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 40, 50));
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 250, 30));
+        getContentPane().add(search_customer, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 250, 30));
 
-        MyTextField.setText("Enter name");
-        MyTextField.setActionCommand("null");
-        MyTextField.setBorder(null);
-        MyTextField.addActionListener(new java.awt.event.ActionListener() {
+        name.setText("Enter name");
+        name.setActionCommand("null");
+        name.setBorder(null);
+        name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MyTextFieldActionPerformed(evt);
+                nameActionPerformed(evt);
             }
         });
-        getContentPane().add(MyTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 240, 360, 30));
+        getContentPane().add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 240, 360, 30));
 
         jSeparator2.setForeground(new java.awt.Color(0, 51, 153));
         getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 270, 360, 10));
@@ -97,15 +97,15 @@ public class CustomerPanel extends javax.swing.JInternalFrame {
         jLabel8.setText("Name");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 220, 140, -1));
 
-        MyTextField1.setText("E-mail");
-        MyTextField1.setActionCommand("null");
-        MyTextField1.setBorder(null);
-        MyTextField1.addActionListener(new java.awt.event.ActionListener() {
+        email.setText("E-mail");
+        email.setActionCommand("null");
+        email.setBorder(null);
+        email.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MyTextField1ActionPerformed(evt);
+                emailActionPerformed(evt);
             }
         });
-        getContentPane().add(MyTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 450, 360, 30));
+        getContentPane().add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 450, 360, 30));
 
         jSeparator3.setForeground(new java.awt.Color(0, 51, 153));
         getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 480, 360, 10));
@@ -115,15 +115,15 @@ public class CustomerPanel extends javax.swing.JInternalFrame {
         jLabel10.setText("E-mail");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 430, 140, -1));
 
-        MyTextField2.setText("Address");
-        MyTextField2.setActionCommand("null");
-        MyTextField2.setBorder(null);
-        MyTextField2.addActionListener(new java.awt.event.ActionListener() {
+        address.setText("Address");
+        address.setActionCommand("null");
+        address.setBorder(null);
+        address.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MyTextField2ActionPerformed(evt);
+                addressActionPerformed(evt);
             }
         });
-        getContentPane().add(MyTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 520, 360, 30));
+        getContentPane().add(address, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 520, 360, 30));
 
         jSeparator4.setForeground(new java.awt.Color(0, 51, 153));
         getContentPane().add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 550, 360, 10));
@@ -133,15 +133,15 @@ public class CustomerPanel extends javax.swing.JInternalFrame {
         jLabel11.setText("Address");
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 500, 160, -1));
 
-        MyTextField3.setText("Enter name");
-        MyTextField3.setActionCommand("null");
-        MyTextField3.setBorder(null);
-        MyTextField3.addActionListener(new java.awt.event.ActionListener() {
+        nic.setText("Enter name");
+        nic.setActionCommand("null");
+        nic.setBorder(null);
+        nic.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MyTextField3ActionPerformed(evt);
+                nicActionPerformed(evt);
             }
         });
-        getContentPane().add(MyTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 310, 360, 30));
+        getContentPane().add(nic, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 310, 360, 30));
 
         jSeparator5.setForeground(new java.awt.Color(0, 51, 153));
         getContentPane().add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 340, 360, 10));
@@ -151,15 +151,15 @@ public class CustomerPanel extends javax.swing.JInternalFrame {
         jLabel12.setText("NIC");
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 290, 130, -1));
 
-        MyTextField4.setText("Vehicles");
-        MyTextField4.setActionCommand("null");
-        MyTextField4.setBorder(null);
-        MyTextField4.addActionListener(new java.awt.event.ActionListener() {
+        vehical.setText("Vehicles");
+        vehical.setActionCommand("null");
+        vehical.setBorder(null);
+        vehical.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MyTextField4ActionPerformed(evt);
+                vehicalActionPerformed(evt);
             }
         });
-        getContentPane().add(MyTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 590, 360, 30));
+        getContentPane().add(vehical, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 590, 360, 30));
 
         jSeparator6.setForeground(new java.awt.Color(0, 51, 153));
         getContentPane().add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 620, 360, 10));
@@ -169,15 +169,15 @@ public class CustomerPanel extends javax.swing.JInternalFrame {
         jLabel16.setText("Vehicles");
         getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 570, 160, -1));
 
-        MyTextField5.setText("Enter name");
-        MyTextField5.setActionCommand("null");
-        MyTextField5.setBorder(null);
-        MyTextField5.addActionListener(new java.awt.event.ActionListener() {
+        mobile_number.setText("Enter name");
+        mobile_number.setActionCommand("null");
+        mobile_number.setBorder(null);
+        mobile_number.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MyTextField5ActionPerformed(evt);
+                mobile_numberActionPerformed(evt);
             }
         });
-        getContentPane().add(MyTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 380, 360, 30));
+        getContentPane().add(mobile_number, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 380, 360, 30));
 
         jSeparator7.setForeground(new java.awt.Color(0, 51, 153));
         getContentPane().add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 410, 360, 10));
@@ -192,14 +192,14 @@ public class CustomerPanel extends javax.swing.JInternalFrame {
         jLabel14.setText("Search Customer");
         getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
-        jButton8.setBackground(new java.awt.Color(0, 51, 153));
-        jButton8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton8.setForeground(new java.awt.Color(255, 255, 255));
-        jButton8.setText("Update");
-        jButton8.setBorder(null);
-        getContentPane().add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 630, 360, 40));
+        update_bt.setBackground(new java.awt.Color(0, 51, 153));
+        update_bt.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        update_bt.setForeground(new java.awt.Color(255, 255, 255));
+        update_bt.setText("Update");
+        update_bt.setBorder(null);
+        getContentPane().add(update_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 630, 360, 40));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        customers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -246,47 +246,42 @@ public class CustomerPanel extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(customers);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 730, 550));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void MyTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MyTextFieldActionPerformed
+    private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_MyTextFieldActionPerformed
+    }//GEN-LAST:event_nameActionPerformed
 
-    private void MyTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MyTextField1ActionPerformed
+    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_MyTextField1ActionPerformed
+    }//GEN-LAST:event_emailActionPerformed
 
-    private void MyTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MyTextField2ActionPerformed
+    private void addressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_MyTextField2ActionPerformed
+    }//GEN-LAST:event_addressActionPerformed
 
-    private void MyTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MyTextField3ActionPerformed
+    private void nicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nicActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_MyTextField3ActionPerformed
+    }//GEN-LAST:event_nicActionPerformed
 
-    private void MyTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MyTextField4ActionPerformed
+    private void vehicalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vehicalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_MyTextField4ActionPerformed
+    }//GEN-LAST:event_vehicalActionPerformed
 
-    private void MyTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MyTextField5ActionPerformed
+    private void mobile_numberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mobile_numberActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_MyTextField5ActionPerformed
+    }//GEN-LAST:event_mobile_numberActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField MyTextField;
-    private javax.swing.JTextField MyTextField1;
-    private javax.swing.JTextField MyTextField2;
-    private javax.swing.JTextField MyTextField3;
-    private javax.swing.JTextField MyTextField4;
-    private javax.swing.JTextField MyTextField5;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton8;
+    private javax.swing.JTextField address;
+    private javax.swing.JTable customers;
+    private javax.swing.JTextField email;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -304,7 +299,12 @@ public class CustomerPanel extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField mobile_number;
+    private javax.swing.JTextField name;
+    private javax.swing.JTextField nic;
+    private javax.swing.JButton search_bt;
+    private javax.swing.JTextField search_customer;
+    private javax.swing.JButton update_bt;
+    private javax.swing.JTextField vehical;
     // End of variables declaration//GEN-END:variables
 }

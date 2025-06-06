@@ -21,49 +21,49 @@ public class BookPanel extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        time_select = new com.toedter.calendar.JDateChooser();
+        serviceid = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
-        jButton2 = new javax.swing.JButton();
+        date_select = new com.toedter.calendar.JDateChooser();
+        search_appointment_bt = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
-        jButton4 = new javax.swing.JButton();
+        description = new javax.swing.JTextPane();
+        cancel_appointment_bt = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        mobile_number = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        upcoming_appointment = new javax.swing.JTable();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jDateChooser3 = new com.toedter.calendar.JDateChooser();
+        search_appointment = new javax.swing.JTextField();
+        update_appointment_time = new com.toedter.calendar.JDateChooser();
         jLabel13 = new javax.swing.JLabel();
-        jDateChooser4 = new com.toedter.calendar.JDateChooser();
+        update_appointment_date = new com.toedter.calendar.JDateChooser();
         jLabel14 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        update_apponitment_serviceid = new javax.swing.JComboBox<>();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        clear_bt = new javax.swing.JButton();
+        book_bt = new javax.swing.JButton();
+        update_appointment_bt = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setName(""); // NOI18N
         setPreferredSize(new java.awt.Dimension(1240, 700));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 160, 30));
+        getContentPane().add(time_select, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 160, 30));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        serviceid.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        serviceid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                serviceidActionPerformed(evt);
             }
         });
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 330, 160, 30));
+        getContentPane().add(serviceid, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 330, 160, 30));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
@@ -79,30 +79,30 @@ public class BookPanel extends javax.swing.JInternalFrame {
         jLabel9.setForeground(new java.awt.Color(0, 51, 153));
         jLabel9.setText("Upcoming Appoinments");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, 230, 30));
-        getContentPane().add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, 160, 30));
+        getContentPane().add(date_select, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, 160, 30));
 
-        jButton2.setForeground(new java.awt.Color(102, 102, 102));
-        jButton2.setText("Search");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 80, 160, 30));
+        search_appointment_bt.setForeground(new java.awt.Color(102, 102, 102));
+        search_appointment_bt.setText("Search");
+        getContentPane().add(search_appointment_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 80, 160, 30));
 
-        jScrollPane1.setViewportView(jTextPane1);
+        jScrollPane1.setViewportView(description);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 440, 330, 120));
 
-        jButton4.setBackground(new java.awt.Color(255, 51, 0));
-        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Cancel");
-        jButton4.setBorder(null);
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 620, 160, 30));
+        cancel_appointment_bt.setBackground(new java.awt.Color(255, 51, 0));
+        cancel_appointment_bt.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cancel_appointment_bt.setForeground(new java.awt.Color(255, 255, 255));
+        cancel_appointment_bt.setText("Cancel");
+        cancel_appointment_bt.setBorder(null);
+        getContentPane().add(cancel_appointment_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 620, 160, 30));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(102, 102, 102));
         jLabel10.setText("Select Service       :");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, 170, 30));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, 160, 30));
+        getContentPane().add(mobile_number, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, 160, 30));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        upcoming_appointment.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -129,7 +129,7 @@ public class BookPanel extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(upcoming_appointment);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 120, 690, 350));
 
@@ -146,30 +146,30 @@ public class BookPanel extends javax.swing.JInternalFrame {
         jSeparator1.setForeground(new java.awt.Color(0, 51, 204));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 330, 10));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/resources/icons8-search-40.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/icons8-search-40.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 70, 40, 50));
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 80, 250, 30));
-        getContentPane().add(jDateChooser3, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 580, 160, 30));
+        getContentPane().add(search_appointment, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 80, 250, 30));
+        getContentPane().add(update_appointment_time, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 580, 160, 30));
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(102, 102, 102));
         jLabel13.setText("Select Time :");
         getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 580, 130, 30));
-        getContentPane().add(jDateChooser4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 540, 160, 30));
+        getContentPane().add(update_appointment_date, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 540, 160, 30));
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(0, 51, 153));
         jLabel14.setText("Update Appoinments");
         getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 490, 240, 30));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        update_apponitment_serviceid.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        update_apponitment_serviceid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                update_apponitment_serviceidActionPerformed(evt);
             }
         });
-        getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 540, 160, 30));
+        getContentPane().add(update_apponitment_serviceid, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 540, 160, 30));
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(102, 102, 102));
@@ -181,51 +181,45 @@ public class BookPanel extends javax.swing.JInternalFrame {
         jLabel16.setText("Select Date :");
         getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 540, 130, 30));
 
-        jButton6.setBackground(new java.awt.Color(0, 51, 153));
-        jButton6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("Clear");
-        jButton6.setBorder(null);
-        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 570, 160, 30));
+        clear_bt.setBackground(new java.awt.Color(0, 51, 153));
+        clear_bt.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        clear_bt.setForeground(new java.awt.Color(255, 255, 255));
+        clear_bt.setText("Clear");
+        clear_bt.setBorder(null);
+        getContentPane().add(clear_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 570, 160, 30));
 
-        jButton7.setBackground(new java.awt.Color(0, 51, 153));
-        jButton7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jButton7.setText("Book");
-        jButton7.setBorder(null);
-        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 570, 160, 30));
+        book_bt.setBackground(new java.awt.Color(0, 51, 153));
+        book_bt.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        book_bt.setForeground(new java.awt.Color(255, 255, 255));
+        book_bt.setText("Book");
+        book_bt.setBorder(null);
+        getContentPane().add(book_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 570, 160, 30));
 
-        jButton8.setBackground(new java.awt.Color(0, 51, 153));
-        jButton8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton8.setForeground(new java.awt.Color(255, 255, 255));
-        jButton8.setText("Update");
-        jButton8.setBorder(null);
-        getContentPane().add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 580, 160, 30));
+        update_appointment_bt.setBackground(new java.awt.Color(0, 51, 153));
+        update_appointment_bt.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        update_appointment_bt.setForeground(new java.awt.Color(255, 255, 255));
+        update_appointment_bt.setText("Update");
+        update_appointment_bt.setBorder(null);
+        getContentPane().add(update_appointment_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 580, 160, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void serviceidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serviceidActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_serviceidActionPerformed
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void update_apponitment_serviceidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_apponitment_serviceidActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_update_apponitment_serviceidActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
-    private com.toedter.calendar.JDateChooser jDateChooser3;
-    private com.toedter.calendar.JDateChooser jDateChooser4;
+    private javax.swing.JButton book_bt;
+    private javax.swing.JButton cancel_appointment_bt;
+    private javax.swing.JButton clear_bt;
+    private com.toedter.calendar.JDateChooser date_select;
+    private javax.swing.JTextPane description;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -240,9 +234,15 @@ public class BookPanel extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JTextField mobile_number;
+    private javax.swing.JTextField search_appointment;
+    private javax.swing.JButton search_appointment_bt;
+    private javax.swing.JComboBox<String> serviceid;
+    private com.toedter.calendar.JDateChooser time_select;
+    private javax.swing.JTable upcoming_appointment;
+    private javax.swing.JButton update_appointment_bt;
+    private com.toedter.calendar.JDateChooser update_appointment_date;
+    private com.toedter.calendar.JDateChooser update_appointment_time;
+    private javax.swing.JComboBox<String> update_apponitment_serviceid;
     // End of variables declaration//GEN-END:variables
 }

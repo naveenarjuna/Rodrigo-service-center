@@ -72,7 +72,7 @@ CREATE TABLE ServiceRecord (
     serviceId INT,
     description Varchar(200),
     dateOfService DATE,
-    totalCost INT,
+    totalCost Double,
     FOREIGN KEY (appointmentId) REFERENCES Appointment(appointmentId),
     FOREIGN KEY (vehicleId) REFERENCES Vehicle(vehicleId),
     FOREIGN KEY (customerId) REFERENCES Customers(customerId),
@@ -102,7 +102,26 @@ CREATE TABLE Product (
     vehicleCompatibility VARCHAR(100),
     brand VARCHAR(100),
     description Varchar(200),
-    unitPrice INT,
+    unitPrice Double,
     supplierId INT,
     FOREIGN KEY (supplierId) REFERENCES Supplier(supplierId)
 );
+
+-- Step 1: Add outletId column
+ALTER TABLE Product
+ADD outletId INT;
+
+-- Step 2: Add foreign key constraint
+ALTER TABLE Product
+ADD CONSTRAINT fk_product_outlet
+FOREIGN KEY (outletId) REFERENCES ServiceOutlet(outletId);
+
+-- Step 1: Add outletId column
+ALTER TABLE Appointment
+ADD outletId INT;
+
+-- Step 2: Add foreign key constraint
+ALTER TABLE Appointment
+ADD CONSTRAINT fk_appointment_outlet
+FOREIGN KEY (outletId) REFERENCES ServiceOutlet(outletId);
+

@@ -32,22 +32,22 @@ public class AppoinmentPanel extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        appointments = new javax.swing.JTable();
+        Search_bt = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        select_date = new com.toedter.calendar.JDateChooser();
         jLabel5 = new javax.swing.JLabel();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        Select_time = new com.toedter.calendar.JDateChooser();
+        Select_oulet = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1240, 700));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        appointments.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -154,18 +154,18 @@ public class AppoinmentPanel extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable1.setRowHeight(30);
-        jScrollPane1.setViewportView(jTable1);
+        appointments.setRowHeight(30);
+        jScrollPane1.setViewportView(appointments);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 1120, 430));
 
-        jButton2.setBackground(new java.awt.Color(0, 51, 153));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Search");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 100, 230, 30));
+        Search_bt.setBackground(new java.awt.Color(0, 51, 153));
+        Search_bt.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Search_bt.setForeground(new java.awt.Color(255, 255, 255));
+        Search_bt.setText("Search");
+        getContentPane().add(Search_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 100, 230, 30));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/resources/icons8-search-40.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/icons8-search-40.png"))); // NOI18N
         jLabel3.setText("jLabel1");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 40, 50));
 
@@ -176,19 +176,19 @@ public class AppoinmentPanel extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Select Date");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 170, -1));
-        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 230, 30));
+        getContentPane().add(select_date, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 230, 30));
 
         jLabel5.setText("Select Location");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 80, 170, -1));
-        getContentPane().add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, 230, 30));
+        getContentPane().add(Select_time, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, 230, 30));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        Select_oulet.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Select_oulet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                Select_ouletActionPerformed(evt);
             }
         });
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 100, 220, 30));
+        getContentPane().add(Select_oulet, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 100, 220, 30));
 
         jLabel6.setText("Select Time");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 80, 170, -1));
@@ -196,22 +196,22 @@ public class AppoinmentPanel extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void Select_ouletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Select_ouletActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_Select_ouletActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private javax.swing.JButton Search_bt;
+    private javax.swing.JComboBox<String> Select_oulet;
+    private com.toedter.calendar.JDateChooser Select_time;
+    private javax.swing.JTable appointments;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private com.toedter.calendar.JDateChooser select_date;
     // End of variables declaration//GEN-END:variables
 }

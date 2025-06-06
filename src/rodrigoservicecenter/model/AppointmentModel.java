@@ -3,41 +3,38 @@ package rodrigoservicecenter.model;
 import rodrigoservicecenter.connect.connect;
 import rodrigoservicecenter.model.entity.Appointment;
 import rodrigoservicecenter.model.entity.Customer;
+import rodrigoservicecenter.model.entity.ServiceOutlet;
 import rodrigoservicecenter.model.entity.Vehicle;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AppointmentModel {
 
-    private final CustomerModel customerModel;
-    private final VehicleModel vehicleModel;
-
-    public AppointmentModel(CustomerModel customerModel, VehicleModel vehicleModel) {
-        this.customerModel = new CustomerModel();
-        this.vehicleModel = new VehicleModel();
-    }
+    private final CustomerModel customerModel = new CustomerModel();
+    private final VehicleModel vehicleModel = new VehicleModel();
+    private final ServiceOutletModel serviceOutletModel = new ServiceOutletModel();
 
     // Create an appointment
     public boolean createAppointment(Appointment appointment) {
         connect db = new connect();
         Connection con = db.createConnection();
 
-        String sql = "INSERT INTO Appointment (appointmentId, customerId, vehicleId, status, serviceName, description, scheduledDate, scheduledTime) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Appointment (appointmentId, customerId, vehicleId, outletId, status, serviceName, description, scheduledDate, scheduledTime) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, appointment.getAppointmentId());
             ps.setInt(2, appointment.getCustomer().getCustomerId());
             ps.setString(3, appointment.getVehicle().getVehicleId());
-            ps.setString(4, appointment.getStatus());
-            ps.setString(5, appointment.getServiceName());
-            ps.setString(6, appointment.getDescription());
-            ps.setDate(7, appointment.getScheduledDate());
-            ps.setTime(8, appointment.getScheduledTime());
+            ps.setInt(4, appointment.getOutlet().getOutletId());
+            ps.setString(5, appointment.getStatus());
+            ps.setString(6, appointment.getServiceName());
+            ps.setString(7, appointment.getDescription());
+            ps.setDate(8, appointment.getScheduledDate());
+            ps.setTime(9, appointment.getScheduledTime());
 
             int rows = ps.executeUpdate();
             return rows > 0;
@@ -54,7 +51,7 @@ public class AppointmentModel {
         connect db = new connect();
         Connection con = db.createConnection();
 
-        String sql = "UPDATE Appointment SET customerId = ?, vehicleId = ?, status = ?, serviceName = ?, description = ?, scheduledDate = ?, scheduledTime = ? "
+        String sql = "UPDATE Appointment SET customerId = ?, vehicleId = ?, OutletId = ?, status = ?, serviceName = ?, description = ?, scheduledDate = ?, scheduledTime = ? "
                 + "WHERE appointmentId = ?";
 
         try {
@@ -111,14 +108,12 @@ public class AppointmentModel {
             ps.setInt(1, appointmentId);
             ResultSet rs = ps.executeQuery();
 
-            Customer customer = customerModel.getCustomerById(rs.getInt("customerId"));
-            Vehicle vehicle = vehicleModel.getVehicleById(rs.getInt("vehicleId"));
-
             if (rs.next()) {
                 return new Appointment(
                         rs.getInt("appointmentId"),
-                        customer,
-                        vehicle,
+                        customerModel.getCustomerById(rs.getInt("customerId")),
+                        vehicleModel.getVehicleById(rs.getInt("vehicleId")),
+                        serviceOutletModel.getOutletById(rs.getInt("OutletId")),
                         rs.getString("status"),
                         rs.getString("serviceName"),
                         rs.getString("description"),
@@ -133,6 +128,60 @@ public class AppointmentModel {
         return null;
     }
 
+    public List<Appointment> searchAppointments(Date date, Time time, Integer outletId) {
+        connect db = new connect();
+        Connection con = db.createConnection();
+        List<Appointment> list = new ArrayList<>();
 
+        StringBuilder sql = new StringBuilder("SELECT * FROM Appointment WHERE 1=1");
+
+        if (date != null) {
+            sql.append(" AND scheduledDate = ?");
+        }
+        if (time != null) {
+            sql.append(" AND scheduledTime = ?");
+        }
+        if (outletId != null) {
+            sql.append(" AND outletId = ?");
+        }
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql.toString());
+
+            int index = 1;
+            if (date != null) {
+                ps.setDate(index++, date);
+            }
+            if (time != null) {
+                ps.setTime(index++, time);
+            }
+            if (outletId != null) {
+                ps.setInt(index++, outletId);
+            }
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                Appointment appointment = new Appointment(
+                        rs.getInt("appointmentId"),
+                        customerModel.getCustomerById(rs.getInt("customerId")),
+                        vehicleModel.getVehicleById(rs.getInt("vehicleId")),
+                        serviceOutletModel.getOutletById(rs.getInt("OutletId")),
+                        rs.getString("status"),
+                        rs.getString("serviceName"),
+                        rs.getString("description"),
+                        rs.getDate("scheduledDate"),
+                        rs.getTime("scheduledTime")
+                );
+                list.add(appointment);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
 
 }

@@ -10,7 +10,7 @@ import java.util.List;
 public class CustomerModel {
 
     // Add customer
-    public boolean addCustomer(Customer customer) {
+    public Customer addCustomer(Customer customer) {
         connect db = new connect();
         Connection con = db.createConnection();
 
@@ -27,12 +27,16 @@ public class CustomerModel {
             ps.setDate(7, new Date(customer.getRegistrationDate().getTime()));
 
             int rowsInserted = ps.executeUpdate();
-            return rowsInserted > 0;
+
+            if (rowsInserted > 0) {
+                return customer;
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
+
+        return null;
     }
 
 
@@ -216,4 +220,35 @@ public class CustomerModel {
 
         return customers;
     }
+
+    public Customer getCustomerByContactNumber(int contactNumber) {
+        Customer customer = null;
+        connect db = new connect();
+        Connection con = db.createConnection();
+
+        String sql = "SELECT * FROM Customers WHERE contactNumber = ?";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, contactNumber);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                int customerId = rs.getInt("customerId");
+                String username = rs.getString("username");
+                String password = rs.getString("password");
+                String email = rs.getString("email");
+                String address = rs.getString("address");
+                Date registrationDate = rs.getDate("registrationDate");
+
+                customer = new Customer(customerId, username, password, contactNumber, email, address, registrationDate);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return customer;
+    }
+
 }

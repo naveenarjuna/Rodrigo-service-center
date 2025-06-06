@@ -12,7 +12,7 @@ public class CustomerController {
         return customerModel.getAllCustomers();
     }
 
-    public boolean addCustomer(Customer customer){
+    public Customer addCustomer(Customer customer){
         CustomerModel customerModel = new CustomerModel();
         return customerModel.addCustomer(customer);
     }
@@ -30,11 +30,6 @@ public class CustomerController {
     public Customer getCustomerById(int id){
         CustomerModel customerModel = new CustomerModel();
         return customerModel.getCustomerById(id);
-    }
-
-    public Customer loginCustomer(String username, String password){
-        CustomerModel customerModel = new CustomerModel();
-        return customerModel.loginCustomer(username, password);
     }
 
     public List<Customer> searchCustomers(String keyword) {

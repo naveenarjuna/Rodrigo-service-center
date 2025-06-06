@@ -4,21 +4,23 @@ public class Product {
     private int productId;
     private String productName;
     private String category;
+    private ServiceOutlet outlet;
     private String vehicleCompatibility;
     private String brand;
     private String description;
     private int unitPrice;
     private Supplier supplier;
 
-    public Product(String brand, String category, String description, int productId, String productName, Supplier supplier, int unitPrice, String vehicleCompatibility) {
-        this.brand = brand;
-        this.category = category;
-        this.description = description;
+    public Product(int productId, String productName, String category, ServiceOutlet outlet, String vehicleCompatibility, String brand, String description, int unitPrice, Supplier supplier) {
         this.productId = productId;
         this.productName = productName;
-        this.supplier = supplier;
-        this.unitPrice = unitPrice;
+        this.category = category;
+        this.outlet = outlet;
         this.vehicleCompatibility = vehicleCompatibility;
+        this.brand = brand;
+        this.description = description;
+        this.unitPrice = unitPrice;
+        this.supplier = supplier;
     }
 
     public int getProductId() {
@@ -43,6 +45,14 @@ public class Product {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public ServiceOutlet getOutlet() {
+        return outlet;
+    }
+
+    public void setOutlet(ServiceOutlet outlet) {
+        this.outlet = outlet;
     }
 
     public String getVehicleCompatibility() {
