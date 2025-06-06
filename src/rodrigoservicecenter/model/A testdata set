@@ -1,0 +1,79 @@
+-- Populate Department table
+INSERT INTO Department (departmentId, departmentName, location) VALUES
+(1, 'Service', 'New York'),
+(2, 'Sales', 'Chicago'),
+(3, 'Inventory', 'Los Angeles'),
+(4, 'Customer Support', 'Houston'),
+(5, 'Administration', 'Miami');
+
+-- Populate Employee table
+INSERT INTO Employee (employeeId, nic, name, roleName, phone, email, address, dateOfJoining, dateOfBirth, workOutlet, departmentId) VALUES
+(1, 123456789, 'John Doe', 'Mechanic', 5551234567, 'john.doe@example.com', '123 Main St, New York', '2020-01-15', '1985-03-22', 'NY Branch', 1),
+(2, 234567890, 'Jane Smith', 'Sales Manager', 5552345678, 'jane.smith@example.com', '456 Oak St, Chicago', '2019-06-10', '1990-07-15', 'Chicago Branch', 2),
+(3, 345678901, 'Mike Johnson', 'Inventory Clerk', 5553456789, 'mike.johnson@example.com', '789 Pine St, Los Angeles', '2021-03-01', '1992-11-30', 'LA Branch', 3),
+(4, 456789012, 'Sarah Williams', 'Support Specialist', 5554567890, 'sarah.w@example.com', '101 Elm St, Houston', '2022-02-20', '1988-05-12', 'Houston Branch', 4),
+(5, 567890123, 'David Brown', 'Admin', 5555678901, 'david.brown@example.com', '202 Cedar St, Miami', '2018-09-05', '1983-09-25', 'Miami Branch', 5);
+
+-- Populate Customers table
+INSERT INTO Customers (customerId, username, password, contactNumber, email, address, registrationDate) VALUES
+(1, 'customer1', 'pass123', 5551112222, 'customer1@example.com', '321 Birch St, New York', '2023-01-10'),
+(2, 'customer2', 'pass456', 5552223333, 'customer2@example.com', '654 Maple St, Chicago', '2023-02-15'),
+(3, 'customer3', 'pass789', 5553334444, 'customer3@example.com', '987 Spruce St, Los Angeles', '2023-03-20'),
+(4, 'customer4', 'pass101', 5554445555, 'customer4@example.com', '147 Willow St, Houston', '2023-04-25'),
+(5, 'customer5', 'pass112', 5555556666, 'customer5@example.com', '258 Chestnut St, Miami', '2023-05-30');
+
+-- Populate Vehicle table
+INSERT INTO Vehicle (vehicleId, customerId, model, year, fuelType, lastServicedDate, mileage) VALUES
+('VIN001', 1, 'Toyota Camry', 2019, 'Gasoline', '2024-06-01', 45000),
+('VIN002', 2, 'Honda Civic', 2020, 'Hybrid', '2024-07-15', 32000),
+('VIN003', 3, 'Ford F-150', 2018, 'Diesel', '2024-08-20', 60000),
+('VIN004', 4, 'Chevrolet Malibu', 2021, 'Gasoline', '2024-09-10', 25000),
+('VIN005', 5, 'Tesla Model 3', 2022, 'Electric', '2024-10-05', 18000);
+
+-- Populate ServiceOutlet table
+INSERT INTO ServiceOutlet (outletId, outletName, location, contactNumber, email) VALUES
+(1, 'NY Service Center', 'New York', 5556667777, 'ny.service@example.com'),
+(2, 'Chicago Service Center', 'Chicago', 5557778888, 'chicago.service@example.com'),
+(3, 'LA Service Center', 'Los Angeles', 5558889999, 'la.service@example.com'),
+(4, 'Houston Service Center', 'Houston', 5559990000, 'houston.service@example.com'),
+(5, 'Miami Service Center', 'Miami', 5550001111, 'miami.service@example.com');
+
+-- Populate Appointment table
+INSERT INTO Appointment (appointmentId, customerId, vehicleId, status, serviceName, description, scheduledDate, scheduledTime, outletId) VALUES
+(1, 1, 'VIN001', 'Scheduled', 'Oil Change', 'Standard oil change service', '2025-06-10', '09:00:00', 1),
+(2, 2, 'VIN002', 'Completed', 'Tire Rotation', 'Rotate all four tires', '2025-06-12', '10:30:00', 2),
+(3, 3, 'VIN003', 'Pending', 'Brake Inspection', 'Check brake pads and rotors', '2025-06-15', '11:00:00', 3),
+(4, 4, 'VIN004', 'Scheduled', 'Battery Check', 'Inspect battery health', '2025-06-18', '14:00:00', 4),
+(5, 5, 'VIN005', 'Cancelled', 'Full Service', 'Complete vehicle service', '2025-06-20', '15:30:00', 5);
+
+-- Populate Service table
+INSERT INTO Service (serviceId, serviceName, description, estimatedDuration, vehicleCompatibility, price) VALUES
+(1, 'Oil Change', 'Replace engine oil and filter', '01:00:00', 'All Models', 50),
+(2, 'Tire Rotation', 'Rotate tires to ensure even wear', '00:45:00', 'All Models', 30),
+(3, 'Brake Inspection', 'Inspect brake system components', '01:30:00', 'All Models', 60),
+(4, 'Battery Check', 'Test battery performance', '00:30:00', 'All Models', 20),
+(5, 'Full Service', 'Comprehensive vehicle check', '03:00:00', 'All Models', 150);
+
+-- Populate ServiceRecord table
+INSERT INTO ServiceRecord (recordId, appointmentId, vehicleId, customerId, serviceId, description, dateOfService, totalCost) VALUES
+(1, 1, 'VIN001', 1, 1, 'Oil change completed', '2025-06-10', 50.00),
+(2, 2, 'VIN002', 2, 2, 'Tires rotated successfully', '2025-06-12', 30.00),
+(3, 3, 'VIN003', 3, 3, 'Brake inspection performed', '2025-06-15', 60.00),
+(4, 4, 'VIN004', 4, 4, 'Battery checked, good condition', '2025-06-18', 20.00),
+(5, 5, 'VIN005', 5, 5, 'Full service cancelled', '2025-06-20', 0.00);
+
+-- Populate Supplier table
+INSERT INTO Supplier (supplierId, supplierName, address, contactNumber, email) VALUES
+(1, 'AutoParts Inc.', '123 Industrial Rd, New York', 5551112222, 'autoparts@example.com'),
+(2, 'Tire World', '456 Factory St, Chicago', 5552223333, 'tireworld@example.com'),
+(3, 'Battery Solutions', '789 Tech Park, Los Angeles', 5553334444, 'batterysol@example.com'),
+(4, 'Oil Suppliers Ltd.', '101 Supply Ln, Houston', 5554445555, 'oilsuppliers@example.com'),
+(5, 'Brake Systems Co.', '202 Parts Ave, Miami', 5555556666, 'brakesystems@example.com');
+
+-- Populate Product table
+INSERT INTO Product (productId, productName, category, vehicleCompatibility, brand, description, unitPrice, supplierId, outletId) VALUES
+(1, 'Synthetic Oil', 'Oil', 'All Models', 'Mobil1', '5W-30 Synthetic Oil', 25.00, 4, 1),
+(2, 'All-Season Tire', 'Tire', 'All Models', 'Michelin', '205/55R16 Tire', 100.00, 2, 2),
+(3, 'Brake Pads', 'Brakes', 'All Models', 'Bosch', 'Ceramic Brake Pads', 60.00, 5, 3),
+(4, 'Car Battery', 'Battery', 'All Models', 'Interstate', '12V 800CCA Battery', 120.00, 3, 4),
+(5, 'Air Filter', 'Filter', 'All Models', 'K&N', 'High-Performance Air Filter', 40.00, 1, 5);
