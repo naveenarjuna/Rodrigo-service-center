@@ -182,7 +182,7 @@ public class LoginForm extends javax.swing.JFrame {
 
         if (loggedInEmployee != null) {
             // Login successful
-            Dashboard dash1 = new Dashboard(loggedInEmployee);
+            Dashboard dash1 = new Dashboard();
             dash1.setVisible(true);
             dash1.pack();
             this.dispose(); // Close the login form
