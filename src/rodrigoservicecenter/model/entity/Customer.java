@@ -21,6 +21,10 @@ public class Customer {
         this.registrationDate = registrationDate;
     }
 
+    public Customer() {
+
+    }
+
     public int getCustomerId() {
         return customerId;
     }

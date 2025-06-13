@@ -125,3 +125,44 @@ ALTER TABLE Appointment
 ADD CONSTRAINT fk_appointment_outlet
 FOREIGN KEY (outletId) REFERENCES ServiceOutlet(outletId);
 
+CREATE TABLE invoice_service (
+	serviceInvoiceId INT PRIMARY KEY AUTO_INCREMENT,
+    invoiceId INT,
+    serviceId INT,
+    FOREIGN KEY (invoiceId) REFERENCES invoice(invoiceId),
+    FOREIGN KEY (serviceId) REFERENCES service(serviceId)
+);
+
+CREATE TABLE invoice_product (
+	productInvoiceId INT PRIMARY KEY AUTO_INCREMENT,
+    invoiceId INT,
+    productId INT,
+    quantity INT DEFAULT 1,
+    FOREIGN KEY (invoiceId) REFERENCES invoice(invoiceId),
+    FOREIGN KEY (productId) REFERENCES product(productId)
+);
+
+
+CREATE TABLE payment (
+    paymentId INT PRIMARY KEY AUTO_INCREMENT,
+    customerId INT,
+    invoiceId INT,
+    totalAmount INT,
+    paymentDate DATE,
+    paymentMethod VARCHAR(50),
+    paymentStatus VARCHAR(50),
+    FOREIGN KEY (customerId) REFERENCES customer(customerId),
+    FOREIGN KEY (invoiceId) REFERENCES invoice(invoiceId)
+);
+
+CREATE TABLE invoice (
+    invoiceId INT PRIMARY KEY AUTO_INCREMENT,
+    customerId INT,
+    issueDate DATE,
+    dueDate DATE,
+    totalAmount INT,
+    paymentStatus VARCHAR(50),
+    FOREIGN KEY (customerId) REFERENCES customer(customerId)
+);
+
+

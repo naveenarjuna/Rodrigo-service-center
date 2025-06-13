@@ -50,6 +50,7 @@ public class BookPanel extends javax.swing.JInternalFrame {
         clear_bt = new javax.swing.JButton();
         book_bt = new javax.swing.JButton();
         update_appointment_bt = new javax.swing.JButton();
+        refresh_bt = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setName(""); // NOI18N
@@ -83,6 +84,11 @@ public class BookPanel extends javax.swing.JInternalFrame {
 
         search_appointment_bt.setForeground(new java.awt.Color(102, 102, 102));
         search_appointment_bt.setText("Search");
+        search_appointment_bt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                search_appointment_btActionPerformed(evt);
+            }
+        });
         getContentPane().add(search_appointment_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 80, 160, 30));
 
         jScrollPane1.setViewportView(description);
@@ -94,6 +100,11 @@ public class BookPanel extends javax.swing.JInternalFrame {
         cancel_appointment_bt.setForeground(new java.awt.Color(255, 255, 255));
         cancel_appointment_bt.setText("Cancel");
         cancel_appointment_bt.setBorder(null);
+        cancel_appointment_bt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancel_appointment_btActionPerformed(evt);
+            }
+        });
         getContentPane().add(cancel_appointment_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 620, 160, 30));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -146,7 +157,7 @@ public class BookPanel extends javax.swing.JInternalFrame {
         jSeparator1.setForeground(new java.awt.Color(0, 51, 204));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 330, 10));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/icons8-search-40.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/resources/icons8-search-40.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 70, 40, 50));
         getContentPane().add(search_appointment, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 80, 250, 30));
@@ -186,6 +197,11 @@ public class BookPanel extends javax.swing.JInternalFrame {
         clear_bt.setForeground(new java.awt.Color(255, 255, 255));
         clear_bt.setText("Clear");
         clear_bt.setBorder(null);
+        clear_bt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clear_btActionPerformed(evt);
+            }
+        });
         getContentPane().add(clear_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 570, 160, 30));
 
         book_bt.setBackground(new java.awt.Color(0, 51, 153));
@@ -193,6 +209,11 @@ public class BookPanel extends javax.swing.JInternalFrame {
         book_bt.setForeground(new java.awt.Color(255, 255, 255));
         book_bt.setText("Book");
         book_bt.setBorder(null);
+        book_bt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                book_btActionPerformed(evt);
+            }
+        });
         getContentPane().add(book_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 570, 160, 30));
 
         update_appointment_bt.setBackground(new java.awt.Color(0, 51, 153));
@@ -200,7 +221,21 @@ public class BookPanel extends javax.swing.JInternalFrame {
         update_appointment_bt.setForeground(new java.awt.Color(255, 255, 255));
         update_appointment_bt.setText("Update");
         update_appointment_bt.setBorder(null);
+        update_appointment_bt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                update_appointment_btActionPerformed(evt);
+            }
+        });
         getContentPane().add(update_appointment_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 580, 160, 30));
+
+        refresh_bt.setForeground(new java.awt.Color(102, 102, 102));
+        refresh_bt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/resources/refresh-3104 (1).png"))); // NOI18N
+        refresh_bt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refresh_btActionPerformed(evt);
+            }
+        });
+        getContentPane().add(refresh_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 80, 30, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -212,6 +247,30 @@ public class BookPanel extends javax.swing.JInternalFrame {
     private void update_apponitment_serviceidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_apponitment_serviceidActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_update_apponitment_serviceidActionPerformed
+
+    private void clear_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear_btActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clear_btActionPerformed
+
+    private void book_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_book_btActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_book_btActionPerformed
+
+    private void search_appointment_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_appointment_btActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_search_appointment_btActionPerformed
+
+    private void refresh_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refresh_btActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_refresh_btActionPerformed
+
+    private void update_appointment_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_appointment_btActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_update_appointment_btActionPerformed
+
+    private void cancel_appointment_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_appointment_btActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancel_appointment_btActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -235,6 +294,7 @@ public class BookPanel extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField mobile_number;
+    private javax.swing.JButton refresh_bt;
     private javax.swing.JTextField search_appointment;
     private javax.swing.JButton search_appointment_bt;
     private javax.swing.JComboBox<String> serviceid;

@@ -12,9 +12,11 @@ public class LoginForm extends javax.swing.JFrame {
     public LoginForm() {
         setUndecorated(true); // Remove title bar
         initComponents();
+
+        jPasswordField1.setText("");
+        MyTextField.setText("");
+
     }
-    
-   
 
     
     @SuppressWarnings("unchecked")
@@ -182,7 +184,7 @@ public class LoginForm extends javax.swing.JFrame {
 
         if (loggedInEmployee != null) {
             // Login successful
-            Dashboard dash1 = new Dashboard();
+            Dashboard dash1 = new Dashboard(loggedInEmployee);
             dash1.setVisible(true);
             dash1.pack();
             this.dispose(); // Close the login form

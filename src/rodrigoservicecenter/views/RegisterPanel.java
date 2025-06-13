@@ -4,7 +4,14 @@
  */
 package rodrigoservicecenter.views;
 
+import rodrigoservicecenter.model.CustomerModel;
+import rodrigoservicecenter.model.VehicleModel;
+import rodrigoservicecenter.model.entity.Customer;
+import rodrigoservicecenter.model.entity.Vehicle;
+
+import javax.swing.*;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import java.sql.Date;
 
 /**
  *
@@ -20,6 +27,10 @@ public class RegisterPanel extends javax.swing.JInternalFrame {
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0)); 
         BasicInternalFrameUI ui= (BasicInternalFrameUI) this.getUI(); 
         ui.setNorthPane (null);
+
+        clearForm();
+        yearValue();
+
     }
 
     /**
@@ -31,6 +42,7 @@ public class RegisterPanel extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel2 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -47,7 +59,7 @@ public class RegisterPanel extends javax.swing.JInternalFrame {
         nic = new javax.swing.JTextField();
         jSeparator5 = new javax.swing.JSeparator();
         jLabel12 = new javax.swing.JLabel();
-        vehicles = new javax.swing.JTextField();
+        vehicleModel = new javax.swing.JTextField();
         jSeparator6 = new javax.swing.JSeparator();
         jLabel16 = new javax.swing.JLabel();
         register_bt = new javax.swing.JButton();
@@ -55,12 +67,28 @@ public class RegisterPanel extends javax.swing.JInternalFrame {
         mobile_number = new javax.swing.JTextField();
         jSeparator7 = new javax.swing.JSeparator();
         jLabel18 = new javax.swing.JLabel();
+        password = new javax.swing.JTextField();
+        jSeparator8 = new javax.swing.JSeparator();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        carYearScroller = new javax.swing.JSpinner();
+        LastServiceDate = new com.toedter.calendar.JDateChooser();
+        jLabel19 = new javax.swing.JLabel();
+        petrolBt = new javax.swing.JRadioButton();
+        dieselBt = new javax.swing.JRadioButton();
+        fualOtherBt = new javax.swing.JRadioButton();
+        jLabel20 = new javax.swing.JLabel();
+        mileage_combo = new javax.swing.JComboBox<>();
+        jSeparator10 = new javax.swing.JSeparator();
+        jSeparator11 = new javax.swing.JSeparator();
+        jSeparator12 = new javax.swing.JSeparator();
+        jLabel21 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1240, 700));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/4.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/resources/4.png"))); // NOI18N
         jLabel2.setText("register");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 180, 340, 170));
 
@@ -72,7 +100,7 @@ public class RegisterPanel extends javax.swing.JInternalFrame {
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 102, 204));
         jLabel13.setText("New Customer");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, -1, -1));
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, -1, -1));
 
         jLabel15.setText("Lorem Ipsum is simply dummy text of the printing and typesetting industry. ");
         getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 430, -1, -1));
@@ -85,15 +113,15 @@ public class RegisterPanel extends javax.swing.JInternalFrame {
                 nameActionPerformed(evt);
             }
         });
-        getContentPane().add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 360, 30));
+        getContentPane().add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 360, 30));
 
         jSeparator2.setForeground(new java.awt.Color(0, 51, 153));
-        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, 360, 10));
+        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 360, 10));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(102, 102, 102));
         jLabel8.setText("Name");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, 140, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 140, -1));
 
         email.setText("E-mail");
         email.setActionCommand("null");
@@ -103,15 +131,15 @@ public class RegisterPanel extends javax.swing.JInternalFrame {
                 emailActionPerformed(evt);
             }
         });
-        getContentPane().add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 360, 360, 30));
+        getContentPane().add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 320, 360, 30));
 
         jSeparator3.setForeground(new java.awt.Color(0, 51, 153));
-        getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 390, 360, 10));
+        getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 350, 360, 10));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(102, 102, 102));
         jLabel10.setText("E-mail");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, 140, -1));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, 140, -1));
 
         address.setText("Address");
         address.setActionCommand("null");
@@ -121,17 +149,17 @@ public class RegisterPanel extends javax.swing.JInternalFrame {
                 addressActionPerformed(evt);
             }
         });
-        getContentPane().add(address, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 430, 360, 30));
+        getContentPane().add(address, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 380, 360, 30));
 
         jSeparator4.setForeground(new java.awt.Color(0, 51, 153));
-        getContentPane().add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 460, 360, 10));
+        getContentPane().add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 410, 360, 10));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(102, 102, 102));
         jLabel11.setText("Address");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 410, 160, -1));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 360, 160, -1));
 
-        nic.setText("Enter name");
+        nic.setText("Enter nic");
         nic.setActionCommand("null");
         nic.setBorder(null);
         nic.addActionListener(new java.awt.event.ActionListener() {
@@ -139,47 +167,52 @@ public class RegisterPanel extends javax.swing.JInternalFrame {
                 nicActionPerformed(evt);
             }
         });
-        getContentPane().add(nic, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 360, 30));
+        getContentPane().add(nic, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, 360, 30));
 
         jSeparator5.setForeground(new java.awt.Color(0, 51, 153));
-        getContentPane().add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, 360, 10));
+        getContentPane().add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, 360, 10));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(102, 102, 102));
         jLabel12.setText("NIC");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, 130, -1));
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, 130, -1));
 
-        vehicles.setText("Vehicles");
-        vehicles.setActionCommand("null");
-        vehicles.setBorder(null);
-        vehicles.addActionListener(new java.awt.event.ActionListener() {
+        vehicleModel.setText("Vehicles");
+        vehicleModel.setActionCommand("null");
+        vehicleModel.setBorder(null);
+        vehicleModel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                vehiclesActionPerformed(evt);
+                vehicleModelActionPerformed(evt);
             }
         });
-        getContentPane().add(vehicles, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 500, 360, 30));
+        getContentPane().add(vehicleModel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 450, 360, 30));
 
         jSeparator6.setForeground(new java.awt.Color(0, 51, 153));
-        getContentPane().add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 530, 360, 10));
+        getContentPane().add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 600, 80, 10));
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel16.setText("Vehicles");
-        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 480, 160, -1));
+        jLabel16.setText("Mileage");
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 490, 110, -1));
 
         register_bt.setBackground(new java.awt.Color(0, 51, 153));
         register_bt.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         register_bt.setForeground(new java.awt.Color(255, 255, 255));
         register_bt.setText("Register");
         register_bt.setBorder(null);
-        getContentPane().add(register_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 570, 360, 30));
+        register_bt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                register_btActionPerformed(evt);
+            }
+        });
+        getContentPane().add(register_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 660, 360, 30));
 
         username.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         username.setForeground(new java.awt.Color(0, 102, 204));
         username.setText("NIMAL");
         getContentPane().add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 350, -1, -1));
 
-        mobile_number.setText("Enter name");
+        mobile_number.setText("enter mobile number");
         mobile_number.setActionCommand("null");
         mobile_number.setBorder(null);
         mobile_number.addActionListener(new java.awt.event.ActionListener() {
@@ -187,15 +220,81 @@ public class RegisterPanel extends javax.swing.JInternalFrame {
                 mobile_numberActionPerformed(evt);
             }
         });
-        getContentPane().add(mobile_number, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 360, 30));
+        getContentPane().add(mobile_number, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 360, 30));
 
         jSeparator7.setForeground(new java.awt.Color(0, 51, 153));
-        getContentPane().add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 320, 360, 10));
+        getContentPane().add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 360, 10));
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(102, 102, 102));
         jLabel18.setText("Mobile Number");
-        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 130, -1));
+        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, 130, -1));
+
+        password.setText("Enter password");
+        password.setActionCommand("null");
+        password.setBorder(null);
+        password.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordActionPerformed(evt);
+            }
+        });
+        getContentPane().add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 360, 30));
+
+        jSeparator8.setForeground(new java.awt.Color(0, 51, 153));
+        getContentPane().add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, 360, 10));
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel9.setText("Password");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 140, -1));
+
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel17.setText("Fual Type :");
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 620, 80, -1));
+
+        carYearScroller.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        getContentPane().add(carYearScroller, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 570, 80, 30));
+        getContentPane().add(LastServiceDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 570, 250, 30));
+
+        jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel19.setText("Year");
+        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 550, 160, -1));
+
+        buttonGroup1.add(petrolBt);
+        petrolBt.setText("Petrol");
+        getContentPane().add(petrolBt, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 620, -1, -1));
+
+        buttonGroup1.add(dieselBt);
+        dieselBt.setText(" Diesel");
+        getContentPane().add(dieselBt, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 620, -1, -1));
+
+        buttonGroup1.add(fualOtherBt);
+        fualOtherBt.setText("Other");
+        getContentPane().add(fualOtherBt, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 620, -1, -1));
+
+        jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel20.setText("Last Service Date");
+        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 550, 160, -1));
+
+        mileage_combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0 - 10,000 miles", "10,001 - 50,000 miles", "50,001 - 100,000 miles", "100,001 - 200,000 miles", "200,001+ miles" }));
+        getContentPane().add(mileage_combo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 510, 360, 30));
+
+        jSeparator10.setForeground(new java.awt.Color(0, 51, 153));
+        getContentPane().add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 540, 360, 10));
+
+        jSeparator11.setForeground(new java.awt.Color(0, 51, 153));
+        getContentPane().add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 600, 250, 10));
+
+        jSeparator12.setForeground(new java.awt.Color(0, 51, 153));
+        getContentPane().add(jSeparator12, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 480, 360, 10));
+
+        jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel21.setText("Vehicle Model");
+        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 430, 160, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -216,18 +315,168 @@ public class RegisterPanel extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nicActionPerformed
 
-    private void vehiclesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vehiclesActionPerformed
+    private void vehicleModelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vehicleModelActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_vehiclesActionPerformed
+    }//GEN-LAST:event_vehicleModelActionPerformed
 
     private void mobile_numberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mobile_numberActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_mobile_numberActionPerformed
 
+    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordActionPerformed
+
+    private void register_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_register_btActionPerformed
+
+        if (validateCustomerForm() == true) {
+
+            Customer customer = getCustomer();
+            CustomerModel customerModel = new CustomerModel();
+            Customer customerData = customerModel.addCustomer(customer);
+            if (customerData == null) {
+
+                JOptionPane.showMessageDialog(this, "Customer Registered Successfully");
+
+                Vehicle vehicle = getVehicle(customerData);
+                VehicleModel vehicleModel = new VehicleModel();
+
+                if (vehicleModel.addVehicle(vehicle) == true) {
+                    JOptionPane.showMessageDialog(this, "Vehicle Registered Successfully");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Vehicle Registration Failed");
+                }
+
+            }
+        }else {
+            JOptionPane.showMessageDialog(this, "Please fill all the fields");
+        }
+
+    }//GEN-LAST:event_register_btActionPerformed
+
+    private Customer getCustomer() {
+        Customer customer = new Customer();
+        customer.setUsername(name.getText());
+        customer.setEmail(email.getText());
+        customer.setAddress(address.getText());
+        //customer.setNic(nic.getText());
+        customer.setContactNumber(Integer.parseInt(mobile_number.getText()));
+        customer.setPassword(password.getText());
+        return customer;
+    }
+
+    private Vehicle getVehicle(Customer customerData) {
+        Vehicle vehicle = new Vehicle();
+        vehicle.setVehicleId("V" + customerData.getCustomerId());
+        vehicle.setCustomer(customerData);
+        vehicle.setModel(vehicleModel.getText());
+        vehicle.setYear((int)carYearScroller.getValue());
+        if (petrolBt.isSelected()) {
+            vehicle.setFuelType("Petrol");
+        } else if (dieselBt.isSelected()) {
+            vehicle.setFuelType("Diesel");
+        } else {
+            vehicle.setFuelType("Other");
+        }
+        vehicle.setLastServicedDate((Date) LastServiceDate.getDate());
+        vehicle.setMileage(getMileage());
+        return vehicle;
+    }
+
+    private boolean validateCustomerForm() {
+        if (name.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Please enter name");
+            return false;
+        } else if (email.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Please enter email");
+            return false;
+        } else if (address.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Please enter address");
+            return false;
+        } else if (mobile_number.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Please enter mobile number");
+            return false;
+        } else if (password.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Please enter password");
+            return false;
+        } else if (vehicleModel.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Please enter vehicle model");
+            return false;
+        } else if (petrolBt.isSelected() == false && dieselBt.isSelected() == false && fualOtherBt.isSelected() == false) {
+            JOptionPane.showMessageDialog(this, "Please select fuel type");
+            return false;
+        } else if (LastServiceDate.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Please select last service date");
+            return false;
+        }
+        else if (carYearScroller.getValue() == null) {
+            JOptionPane.showMessageDialog(this, "Please select car year");
+            return false;
+        }
+        else if (mileage_combo.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(this, "Please select mileage");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    private void clearForm() {
+        name.setText("");
+        email.setText("");
+        address.setText("");
+        mobile_number.setText("");
+        nic.setText("");
+        password.setText("");
+        vehicleModel.setText("");
+        petrolBt.setSelected(false);
+        dieselBt.setSelected(false);
+        fualOtherBt.setSelected(false);
+        LastServiceDate.setDate(null);
+        mileage_combo.setSelectedIndex(0);
+        yearValue();
+    }
+
+    private void yearValue() {
+        carYearScroller.setModel(new javax.swing.SpinnerNumberModel(2000, 1900, 2030, 1));
+    }
+
+    private int getMileage() {
+        String mileage = mileage_combo.getSelectedItem().toString();
+        switch (mileage) {
+            case "0 - 10,000 miles":
+                mileage = "10000";
+                break;
+            case "10,001 - 50,000 miles":
+                mileage = "50000";
+                break;
+            case "50,001 - 100,000 miles":
+                mileage = "100000";
+                break;
+            case "100,001 - 200,000 miles":
+                mileage = "200000";
+                break;
+            case "200,001+ miles":
+                mileage = "500000";
+                break;
+            default:
+                break;
+        }
+
+        return Integer.parseInt(mileage);
+
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.toedter.calendar.JDateChooser LastServiceDate;
     private javax.swing.JTextField address;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JSpinner carYearScroller;
+    private javax.swing.JRadioButton dieselBt;
     private javax.swing.JTextField email;
+    private javax.swing.JRadioButton fualOtherBt;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -235,20 +484,32 @@ public class RegisterPanel extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JSeparator jSeparator10;
+    private javax.swing.JSeparator jSeparator11;
+    private javax.swing.JSeparator jSeparator12;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
+    private javax.swing.JComboBox<String> mileage_combo;
     private javax.swing.JTextField mobile_number;
     private javax.swing.JTextField name;
     private javax.swing.JTextField nic;
+    private javax.swing.JTextField password;
+    private javax.swing.JRadioButton petrolBt;
     private javax.swing.JButton register_bt;
     private javax.swing.JLabel username;
-    private javax.swing.JTextField vehicles;
+    private javax.swing.JTextField vehicleModel;
     // End of variables declaration//GEN-END:variables
 }

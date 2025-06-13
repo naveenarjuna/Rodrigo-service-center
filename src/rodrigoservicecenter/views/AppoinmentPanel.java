@@ -42,6 +42,7 @@ public class AppoinmentPanel extends javax.swing.JInternalFrame {
         Select_time = new com.toedter.calendar.JDateChooser();
         Select_oulet = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
+        refresh_bt = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1240, 700));
@@ -163,9 +164,14 @@ public class AppoinmentPanel extends javax.swing.JInternalFrame {
         Search_bt.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Search_bt.setForeground(new java.awt.Color(255, 255, 255));
         Search_bt.setText("Search");
-        getContentPane().add(Search_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 100, 230, 30));
+        Search_bt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Search_btActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Search_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 100, 190, 30));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/icons8-search-40.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/resources/icons8-search-40.png"))); // NOI18N
         jLabel3.setText("jLabel1");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 40, 50));
 
@@ -193,12 +199,29 @@ public class AppoinmentPanel extends javax.swing.JInternalFrame {
         jLabel6.setText("Select Time");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 80, 170, -1));
 
+        refresh_bt.setForeground(new java.awt.Color(102, 102, 102));
+        refresh_bt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/resources/refresh-3104 (1).png"))); // NOI18N
+        refresh_bt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refresh_btActionPerformed(evt);
+            }
+        });
+        getContentPane().add(refresh_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 100, 30, 30));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void Select_ouletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Select_ouletActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Select_ouletActionPerformed
+
+    private void Search_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Search_btActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Search_btActionPerformed
+
+    private void refresh_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refresh_btActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_refresh_btActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -212,6 +235,7 @@ public class AppoinmentPanel extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton refresh_bt;
     private com.toedter.calendar.JDateChooser select_date;
     // End of variables declaration//GEN-END:variables
 }

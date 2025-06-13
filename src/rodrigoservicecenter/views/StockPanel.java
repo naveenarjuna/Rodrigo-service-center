@@ -27,6 +27,7 @@ public class StockPanel extends javax.swing.JInternalFrame {
         jLabel14 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
+        refresh_bt_2 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1240, 700));
@@ -147,7 +148,12 @@ public class StockPanel extends javax.swing.JInternalFrame {
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Search");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, 160, 30));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 80, 160, 30));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/resources/icons8-search-40.png"))); // NOI18N
         jLabel3.setText("jLabel1");
@@ -160,13 +166,30 @@ public class StockPanel extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, -1, -1));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 80, 170, 30));
+        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 170, 30));
 
         jLabel4.setText("Outlet Location");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 60, 170, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, 170, -1));
+
+        refresh_bt_2.setForeground(new java.awt.Color(102, 102, 102));
+        refresh_bt_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/resources/refresh-3104 (1).png"))); // NOI18N
+        refresh_bt_2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refresh_bt_2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(refresh_bt_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 80, 30, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void refresh_bt_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refresh_bt_2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_refresh_bt_2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -178,5 +201,6 @@ public class StockPanel extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JButton refresh_bt_2;
     // End of variables declaration//GEN-END:variables
 }

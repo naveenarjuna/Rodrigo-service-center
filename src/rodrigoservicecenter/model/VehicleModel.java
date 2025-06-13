@@ -10,6 +10,38 @@ public class VehicleModel {
 
     private final CustomerModel customerModel = new CustomerModel();
 
+    public Vehicle getVehicleByCustomerId(int id) {
+        Vehicle vehicle = null;
+        connect db = new connect();
+        Connection con = db.createConnection();
+
+        String sql = "SELECT * FROM vehicle WHERE customerId = ?";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                String vehicleId = rs.getString("vehicleId");
+                Customer customer = customerModel.getCustomerById(rs.getInt("customerId"));
+                String model = rs.getString("model");
+                int year = rs.getInt("year");
+                String fuelType = rs.getString("fuelType");
+                Date lastServicedDate = rs.getDate("lastServicedDate");
+                int mileage = rs.getInt("mileage");
+
+                vehicle = new Vehicle(customer, fuelType, lastServicedDate, mileage, model, vehicleId, year);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return vehicle;
+
+    }
+
     public Vehicle getVehicleById(int id) {
         Vehicle vehicle = null;
         connect db = new connect();

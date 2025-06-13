@@ -4,7 +4,18 @@
  */
 package rodrigoservicecenter.views;
 
+import rodrigoservicecenter.controller.CustomerController;
+import rodrigoservicecenter.model.CustomerModel;
+import rodrigoservicecenter.model.VehicleModel;
+import rodrigoservicecenter.model.entity.Customer;
+import rodrigoservicecenter.model.entity.Vehicle;
+
+import javax.swing.*;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.table.DefaultTableModel;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -12,6 +23,10 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
  */
 public class CustomerPanel extends javax.swing.JInternalFrame {
 
+    CustomerController customerController = new CustomerController();
+
+    String[] columnNames = {"Username", "Email", "Address", "Contact Number", "Vehicle"};
+    List<Customer> displayedCustomers = new ArrayList<>();
     /**
      * Creates new form CustomerPanel
      */
@@ -20,6 +35,10 @@ public class CustomerPanel extends javax.swing.JInternalFrame {
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0)); 
         BasicInternalFrameUI ui= (BasicInternalFrameUI) this.getUI(); 
         ui.setNorthPane (null);
+
+        refreshTable();
+        clearFields();
+
     }
 
     /**
@@ -32,10 +51,14 @@ public class CustomerPanel extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        search_bt = new javax.swing.JButton();
+        refresh_bt = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         search_customer = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        customers = new javax.swing.JTable();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
         name = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel8 = new javax.swing.JLabel();
@@ -48,156 +71,62 @@ public class CustomerPanel extends javax.swing.JInternalFrame {
         nic = new javax.swing.JTextField();
         jSeparator5 = new javax.swing.JSeparator();
         jLabel12 = new javax.swing.JLabel();
-        vehical = new javax.swing.JTextField();
         jSeparator6 = new javax.swing.JSeparator();
-        jLabel16 = new javax.swing.JLabel();
         mobile_number = new javax.swing.JTextField();
         jSeparator7 = new javax.swing.JSeparator();
         jLabel18 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        update_bt = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        customers = new javax.swing.JTable();
+        cus_update_bt = new javax.swing.JButton();
+        password = new javax.swing.JTextField();
+        jSeparator8 = new javax.swing.JSeparator();
+        jLabel13 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jSeparator11 = new javax.swing.JSeparator();
+        veh_update_bt = new javax.swing.JButton();
+        jSeparator12 = new javax.swing.JSeparator();
+        vehicleModel = new javax.swing.JTextField();
+        jSeparator13 = new javax.swing.JSeparator();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        carYearScroller = new javax.swing.JSpinner();
+        LastServiceDate = new com.toedter.calendar.JDateChooser();
+        jLabel27 = new javax.swing.JLabel();
+        petrolBt = new javax.swing.JRadioButton();
+        dieselBt = new javax.swing.JRadioButton();
+        fualOtherBt = new javax.swing.JRadioButton();
+        jLabel28 = new javax.swing.JLabel();
+        mileage_combo = new javax.swing.JComboBox<>();
+        jSeparator10 = new javax.swing.JSeparator();
+        jSeparator14 = new javax.swing.JSeparator();
+        jSeparator15 = new javax.swing.JSeparator();
+        jLabel21 = new javax.swing.JLabel();
+        search_bt1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1240, 700));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/6.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/resources/6.png"))); // NOI18N
         jLabel1.setText("Customer");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 40, 330, 170));
 
-        jLabel2.setText("jLabel2");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1158, 864, -1, -1));
+        refresh_bt.setForeground(new java.awt.Color(102, 102, 102));
+        refresh_bt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/resources/refresh-3104 (1).png"))); // NOI18N
+        refresh_bt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refresh_btActionPerformed(evt);
+            }
+        });
+        getContentPane().add(refresh_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 70, 30, 30));
 
-        search_bt.setForeground(new java.awt.Color(102, 102, 102));
-        search_bt.setText("Search");
-        getContentPane().add(search_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, 160, 30));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/icons8-search-40.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/resources/icons8-search-40.png"))); // NOI18N
         jLabel3.setText("jLabel1");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 40, 50));
         getContentPane().add(search_customer, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 250, 30));
-
-        name.setText("Enter name");
-        name.setActionCommand("null");
-        name.setBorder(null);
-        name.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameActionPerformed(evt);
-            }
-        });
-        getContentPane().add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 240, 360, 30));
-
-        jSeparator2.setForeground(new java.awt.Color(0, 51, 153));
-        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 270, 360, 10));
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel8.setText("Name");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 220, 140, -1));
-
-        email.setText("E-mail");
-        email.setActionCommand("null");
-        email.setBorder(null);
-        email.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailActionPerformed(evt);
-            }
-        });
-        getContentPane().add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 450, 360, 30));
-
-        jSeparator3.setForeground(new java.awt.Color(0, 51, 153));
-        getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 480, 360, 10));
-
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel10.setText("E-mail");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 430, 140, -1));
-
-        address.setText("Address");
-        address.setActionCommand("null");
-        address.setBorder(null);
-        address.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addressActionPerformed(evt);
-            }
-        });
-        getContentPane().add(address, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 520, 360, 30));
-
-        jSeparator4.setForeground(new java.awt.Color(0, 51, 153));
-        getContentPane().add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 550, 360, 10));
-
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel11.setText("Address");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 500, 160, -1));
-
-        nic.setText("Enter name");
-        nic.setActionCommand("null");
-        nic.setBorder(null);
-        nic.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nicActionPerformed(evt);
-            }
-        });
-        getContentPane().add(nic, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 310, 360, 30));
-
-        jSeparator5.setForeground(new java.awt.Color(0, 51, 153));
-        getContentPane().add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 340, 360, 10));
-
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel12.setText("NIC");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 290, 130, -1));
-
-        vehical.setText("Vehicles");
-        vehical.setActionCommand("null");
-        vehical.setBorder(null);
-        vehical.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                vehicalActionPerformed(evt);
-            }
-        });
-        getContentPane().add(vehical, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 590, 360, 30));
-
-        jSeparator6.setForeground(new java.awt.Color(0, 51, 153));
-        getContentPane().add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 620, 360, 10));
-
-        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel16.setText("Vehicles");
-        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 570, 160, -1));
-
-        mobile_number.setText("Enter name");
-        mobile_number.setActionCommand("null");
-        mobile_number.setBorder(null);
-        mobile_number.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mobile_numberActionPerformed(evt);
-            }
-        });
-        getContentPane().add(mobile_number, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 380, 360, 30));
-
-        jSeparator7.setForeground(new java.awt.Color(0, 51, 153));
-        getContentPane().add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 410, 360, 10));
-
-        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel18.setText("Mobile Number");
-        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 360, 130, -1));
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(102, 102, 102));
         jLabel14.setText("Search Customer");
         getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
-
-        update_bt.setBackground(new java.awt.Color(0, 51, 153));
-        update_bt.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        update_bt.setForeground(new java.awt.Color(255, 255, 255));
-        update_bt.setText("Update");
-        update_bt.setBorder(null);
-        getContentPane().add(update_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 630, 360, 40));
 
         customers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -248,63 +177,555 @@ public class CustomerPanel extends javax.swing.JInternalFrame {
         ));
         jScrollPane2.setViewportView(customers);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 730, 550));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 730, 600));
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        name.setText("Enter name");
+        name.setActionCommand("null");
+        name.setBorder(null);
+        name.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameActionPerformed(evt);
+            }
+        });
+        jPanel1.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 360, 30));
+
+        jSeparator2.setForeground(new java.awt.Color(0, 51, 153));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 360, 10));
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel8.setText("Name");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 140, -1));
+
+        email.setText("E-mail");
+        email.setActionCommand("null");
+        email.setBorder(null);
+        email.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emailActionPerformed(evt);
+            }
+        });
+        jPanel1.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 360, 30));
+
+        jSeparator3.setForeground(new java.awt.Color(0, 51, 153));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 360, 10));
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel10.setText("E-mail");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 140, -1));
+
+        address.setText("Address");
+        address.setActionCommand("null");
+        address.setBorder(null);
+        address.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addressActionPerformed(evt);
+            }
+        });
+        jPanel1.add(address, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 360, 30));
+
+        jSeparator4.setForeground(new java.awt.Color(0, 51, 153));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 360, 10));
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel11.setText("Address");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 160, -1));
+
+        nic.setText("Enter name");
+        nic.setActionCommand("null");
+        nic.setBorder(null);
+        nic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nicActionPerformed(evt);
+            }
+        });
+        jPanel1.add(nic, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 360, 30));
+
+        jSeparator5.setForeground(new java.awt.Color(0, 51, 153));
+        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 360, 10));
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel12.setText("NIC");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 130, -1));
+
+        jSeparator6.setForeground(new java.awt.Color(0, 51, 153));
+        jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 360, 10));
+
+        mobile_number.setText("Enter name");
+        mobile_number.setActionCommand("null");
+        mobile_number.setBorder(null);
+        mobile_number.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mobile_numberActionPerformed(evt);
+            }
+        });
+        jPanel1.add(mobile_number, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 360, 30));
+
+        jSeparator7.setForeground(new java.awt.Color(0, 51, 153));
+        jPanel1.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 360, 10));
+
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel18.setText("Mobile Number");
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 130, -1));
+
+        cus_update_bt.setBackground(new java.awt.Color(0, 51, 153));
+        cus_update_bt.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cus_update_bt.setForeground(new java.awt.Color(255, 255, 255));
+        cus_update_bt.setText("Update");
+        cus_update_bt.setBorder(null);
+        cus_update_bt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cus_update_btActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cus_update_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, 360, 40));
+
+        password.setText("Enter name");
+        password.setActionCommand("null");
+        password.setBorder(null);
+        password.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordActionPerformed(evt);
+            }
+        });
+        jPanel1.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 360, 30));
+
+        jSeparator8.setForeground(new java.awt.Color(0, 51, 153));
+        jPanel1.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 360, 10));
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel13.setText("Password");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 130, -1));
+
+        jTabbedPane1.addTab("Customer", jPanel1);
+
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jSeparator11.setForeground(new java.awt.Color(0, 51, 153));
+        jPanel2.add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 360, 10));
+
+        veh_update_bt.setBackground(new java.awt.Color(0, 51, 153));
+        veh_update_bt.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        veh_update_bt.setForeground(new java.awt.Color(255, 255, 255));
+        veh_update_bt.setText("Update");
+        veh_update_bt.setBorder(null);
+        veh_update_bt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                veh_update_btActionPerformed(evt);
+            }
+        });
+        jPanel2.add(veh_update_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, 360, 40));
+
+        jSeparator12.setForeground(new java.awt.Color(0, 51, 153));
+        jPanel2.add(jSeparator12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 360, 10));
+
+        vehicleModel.setText("Vehicles");
+        vehicleModel.setActionCommand("null");
+        vehicleModel.setBorder(null);
+        vehicleModel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vehicleModelActionPerformed(evt);
+            }
+        });
+        jPanel2.add(vehicleModel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 360, 30));
+
+        jSeparator13.setForeground(new java.awt.Color(0, 51, 153));
+        jPanel2.add(jSeparator13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 80, 10));
+
+        jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel25.setText("Mileage");
+        jPanel2.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 110, -1));
+
+        jLabel26.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel26.setText("Fual Type :");
+        jPanel2.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, 80, -1));
+
+        carYearScroller.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.add(carYearScroller, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 80, 30));
+        jPanel2.add(LastServiceDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 250, 30));
+
+        jLabel27.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel27.setText("Year");
+        jPanel2.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 160, -1));
+
+        petrolBt.setText("Petrol");
+        jPanel2.add(petrolBt, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 370, -1, -1));
+
+        dieselBt.setText(" Diesel");
+        jPanel2.add(dieselBt, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 370, -1, -1));
+
+        fualOtherBt.setText("Other");
+        jPanel2.add(fualOtherBt, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 370, -1, -1));
+
+        jLabel28.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel28.setText("Last Service Date");
+        jPanel2.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 160, -1));
+
+        mileage_combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0 - 10,000 miles", "10,001 - 50,000 miles", "50,001 - 100,000 miles", "100,001 - 200,000 miles", "200,001+ miles" }));
+        jPanel2.add(mileage_combo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 360, 30));
+
+        jSeparator10.setForeground(new java.awt.Color(0, 51, 153));
+        jPanel2.add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 360, 10));
+
+        jSeparator14.setForeground(new java.awt.Color(0, 51, 153));
+        jPanel2.add(jSeparator14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 250, 10));
+
+        jSeparator15.setForeground(new java.awt.Color(0, 51, 153));
+        jPanel2.add(jSeparator15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 360, 10));
+
+        jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel21.setText("Vehicle Model");
+        jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 160, -1));
+
+        jTabbedPane1.addTab("Vehicle", jPanel2);
+
+        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 220, 400, 510));
+
+        search_bt1.setForeground(new java.awt.Color(102, 102, 102));
+        search_bt1.setText("Search");
+        search_bt1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                search_bt1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(search_bt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, 160, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
+    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nameActionPerformed
-
-    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_emailActionPerformed
-
-    private void addressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addressActionPerformed
-
-    private void nicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nicActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nicActionPerformed
-
-    private void vehicalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vehicalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_vehicalActionPerformed
+    }//GEN-LAST:event_passwordActionPerformed
 
     private void mobile_numberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mobile_numberActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_mobile_numberActionPerformed
 
+    private void nicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nicActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nicActionPerformed
+
+    private void addressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addressActionPerformed
+
+    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailActionPerformed
+
+    private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameActionPerformed
+
+    private void vehicleModelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vehicleModelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_vehicleModelActionPerformed
+
+    private void search_bt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_bt1ActionPerformed
+        if (search_customer.getText().equals("")) {
+            refreshTable();
+        } else {
+            filterTableByName();
+        }
+    }//GEN-LAST:event_search_bt1ActionPerformed
+
+    private void refresh_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refresh_btActionPerformed
+        refreshTable();
+    }//GEN-LAST:event_refresh_btActionPerformed
+
+    private void cus_update_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cus_update_btActionPerformed
+        Customer selectedCustomer = getSelectedCustomer();
+
+        if (selectedCustomer != null) {
+            Customer newCustomer = getCustomer();
+
+            newCustomer.setCustomerId(selectedCustomer.getCustomerId());
+
+            if(newCustomer.getUsername().equals("")){
+                newCustomer.setUsername(selectedCustomer.getUsername());
+            }
+            if(newCustomer.getPassword().equals("")){
+                newCustomer.setPassword(selectedCustomer.getPassword());
+            }
+            if(newCustomer.getEmail().equals("")){
+                newCustomer.setEmail(selectedCustomer.getEmail());
+            }
+            if(newCustomer.getAddress().equals("")){
+                newCustomer.setAddress(selectedCustomer.getAddress());
+            }
+            if(newCustomer.getContactNumber() == 0){
+                newCustomer.setContactNumber(selectedCustomer.getContactNumber());
+            }
+            //newCustomer.setNic(selectedCustomer.getNic());
+            newCustomer.setRegistrationDate(selectedCustomer.getRegistrationDate());
+
+            if (newCustomer.equals(selectedCustomer)) {
+                JOptionPane.showMessageDialog(this, "No changes were made.");
+                return;
+            }
+
+            if (new CustomerController().updateCustomer(newCustomer)) {
+                JOptionPane.showMessageDialog(this, "Customer updated successfully.");
+                refreshTable();
+            }else{
+                JOptionPane.showMessageDialog(this, "Failed to update customer.");
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Please select a customer to update.");
+        }
+    }//GEN-LAST:event_cus_update_btActionPerformed
+
+    private void veh_update_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_veh_update_btActionPerformed
+        Customer selectedCustomer = getSelectedCustomer();
+
+        if (selectedCustomer != null) {
+            Vehicle newVehicle = getVehicle(selectedCustomer);
+            Vehicle selectedVehicle = customerController.getVehicleByCustomerId(selectedCustomer.getCustomerId());
+
+            newVehicle.setVehicleId(selectedVehicle.getVehicleId());
+            newVehicle.setCustomer(selectedCustomer);
+
+            if(newVehicle.getModel().equals("")){
+                newVehicle.setModel(selectedVehicle.getModel());
+            }
+            if(newVehicle.getFuelType().equals("")){
+                newVehicle.setFuelType(selectedVehicle.getFuelType());
+            }
+            if(newVehicle.getLastServicedDate() == null){
+                newVehicle.setLastServicedDate(selectedVehicle.getLastServicedDate());
+            }
+            if(newVehicle.getYear() == 0){
+                newVehicle.setYear(selectedVehicle.getYear());
+            }
+            if(newVehicle.getMileage() == 0){
+                newVehicle.setMileage(selectedVehicle.getMileage());
+            }
+
+            if (newVehicle.equals(selectedVehicle)) {
+                JOptionPane.showMessageDialog(this, "No changes were made.");
+                return;
+            }
+
+        }else{
+            JOptionPane.showMessageDialog(this, "Please select a customer to update.");
+        }
+    }//GEN-LAST:event_veh_update_btActionPerformed
+
+    public void refreshTable() {
+        List<Customer> customerList = new CustomerController().getAllCustomers();
+
+        DefaultTableModel model = new DefaultTableModel(columnNames, 0); // table model
+        List<Customer> displayedCustomers = new ArrayList<>(); // keep reference list
+
+        for (Customer customer : customerList) {
+            Vehicle vehicle = customerController.getVehicleByCustomerId(customer.getCustomerId());
+
+            Object[] rowData = {
+                    customer.getUsername(),
+                    customer.getEmail(),
+                    customer.getAddress(),
+                    customer.getContactNumber(),
+                    (vehicle != null) ? vehicle.getModel() : "N/A"
+            };
+
+            model.addRow(rowData);
+            displayedCustomers.add(customer); // track customer corresponding to row
+        }
+
+        customers.setModel(model);
+    }
+
+    private void filterTableByName() {
+        String searchTerm = search_customer.getText();
+        List<Customer> filteredCustomers = customerController.searchCustomers(searchTerm);
+
+        DefaultTableModel model = new DefaultTableModel(columnNames, 0); // table model
+
+        for (Customer customer : filteredCustomers) {
+            Vehicle vehicle = customerController.getVehicleByCustomerId(customer.getCustomerId());
+
+            Object[] rowData = {
+                    customer.getUsername(),
+                    customer.getEmail(),
+                    customer.getAddress(),
+                    customer.getContactNumber(),
+                    (vehicle != null) ? vehicle.getModel() : "N/A"
+            };
+
+            model.addRow(rowData);
+            displayedCustomers.add(customer); // track customer corresponding to row
+        }
+
+        customers.setModel(model);
+    }
+
+    private void DeleteCustomer(){
+        Customer selectedCustomer = getSelectedCustomer();
+        if (selectedCustomer != null) {
+            if (customerController.deleteCustomer(selectedCustomer.getCustomerId())) {
+                JOptionPane.showMessageDialog(this, "Customer deleted successfully.");
+                refreshTable();
+            } else {
+                JOptionPane.showMessageDialog(this, "Failed to delete customer.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select a customer to delete.");
+        }
+    }
+
+    private Customer getSelectedCustomer() {
+        int selectedRow = customers.getSelectedRow();
+        if (selectedRow != -1) {
+            return displayedCustomers.get(selectedRow);
+        }
+        return null;
+    }
+
+    private void clearFields() {
+        name.setText("");
+        email.setText("");
+        address.setText("");
+        mobile_number.setText("");
+        nic.setText("");
+        password.setText("");
+        vehicleModel.setText("");
+        petrolBt.setSelected(false);
+        dieselBt.setSelected(false);
+        fualOtherBt.setSelected(false);
+        LastServiceDate.setDate(null);
+        yearValue();
+    }
+
+    private  Customer getCustomer() {
+        Customer customer = new Customer();
+        customer.setUsername(name.getText());
+        customer.setEmail(email.getText());
+        customer.setAddress(address.getText());
+        //customer.setNic(nic.getText());
+        customer.setContactNumber(Integer.parseInt(mobile_number.getText()));
+        return customer;
+    }
+
+    private  Vehicle getVehicle(Customer customerData) {
+
+        Vehicle vehicle = new Vehicle();
+        vehicle.setCustomer(customerData);
+        vehicle.setModel(vehicleModel.getText());
+        vehicle.setYear((int)carYearScroller.getValue());
+        if (petrolBt.isSelected()) {
+            vehicle.setFuelType("Petrol");
+        } else if (dieselBt.isSelected()) {
+            vehicle.setFuelType("Diesel");
+        } else {
+            vehicle.setFuelType("Other");
+        }
+        vehicle.setLastServicedDate((Date) LastServiceDate.getDate());
+        vehicle.setMileage(0);
+        return vehicle;
+    }
+
+    private void yearValue() {
+        carYearScroller.setModel(new javax.swing.SpinnerNumberModel(2000, 1900, 2030, 1));
+    }
+
+
+    /*private boolean validateCustomerForm() {
+        if (name.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Please enter name");
+            return false;
+        } else if (email.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Please enter email");
+            return false;
+        } else if (address.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Please enter address");
+            return false;
+        } else if (mobile_number.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Please enter mobile number");
+            return false;
+        } else if (password.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Please enter password");
+            return false;
+        } else if (vehicleModel.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Please enter vehicle model");
+            return false;
+        } else if (petrolBt.isSelected() == false && dieselBt.isSelected() == false && fualOtherBt.isSelected() == false) {
+            JOptionPane.showMessageDialog(this, "Please select fuel type");
+            return false;
+        } else if (LastServiceDate.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Please select last service date");
+            return false;
+        }
+        else if (carYearScroller.getValue() == null) {
+            JOptionPane.showMessageDialog(this, "Please select car year");
+            return false;
+        }else {
+            return true;
+        }
+    }*/
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.toedter.calendar.JDateChooser LastServiceDate;
     private javax.swing.JTextField address;
+    private javax.swing.JSpinner carYearScroller;
+    private javax.swing.JButton cus_update_bt;
     private javax.swing.JTable customers;
+    private javax.swing.JRadioButton dieselBt;
     private javax.swing.JTextField email;
+    private javax.swing.JRadioButton fualOtherBt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator10;
+    private javax.swing.JSeparator jSeparator11;
+    private javax.swing.JSeparator jSeparator12;
+    private javax.swing.JSeparator jSeparator13;
+    private javax.swing.JSeparator jSeparator14;
+    private javax.swing.JSeparator jSeparator15;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JComboBox<String> mileage_combo;
     private javax.swing.JTextField mobile_number;
     private javax.swing.JTextField name;
     private javax.swing.JTextField nic;
-    private javax.swing.JButton search_bt;
+    private javax.swing.JTextField password;
+    private javax.swing.JRadioButton petrolBt;
+    private javax.swing.JButton refresh_bt;
+    private javax.swing.JButton search_bt1;
     private javax.swing.JTextField search_customer;
-    private javax.swing.JButton update_bt;
-    private javax.swing.JTextField vehical;
+    private javax.swing.JButton veh_update_bt;
+    private javax.swing.JTextField vehicleModel;
     // End of variables declaration//GEN-END:variables
 }

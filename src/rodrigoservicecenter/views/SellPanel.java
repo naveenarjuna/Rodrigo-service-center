@@ -50,6 +50,8 @@ public class SellPanel extends javax.swing.JInternalFrame {
         jLabel10 = new javax.swing.JLabel();
         mobile_number = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
+        refresh_bt_2 = new javax.swing.JButton();
+        refresh_bt_1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1240, 700));
@@ -115,6 +117,11 @@ public class SellPanel extends javax.swing.JInternalFrame {
         add_bt.setForeground(new java.awt.Color(255, 255, 255));
         add_bt.setText("ADD");
         add_bt.setBorder(null);
+        add_bt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_btActionPerformed(evt);
+            }
+        });
         getContentPane().add(add_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 600, 110, 30));
 
         selected_delete_bt.setBackground(new java.awt.Color(255, 51, 51));
@@ -151,7 +158,7 @@ public class SellPanel extends javax.swing.JInternalFrame {
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setText("Selected Items And Quantity");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 40, 280, 30));
-        getContentPane().add(Item_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, 360, 30));
+        getContentPane().add(Item_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, 310, 30));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(102, 102, 102));
@@ -174,6 +181,19 @@ public class SellPanel extends javax.swing.JInternalFrame {
         jLabel11.setText("Search item :");
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 120, 30));
 
+        refresh_bt_2.setForeground(new java.awt.Color(102, 102, 102));
+        refresh_bt_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/resources/refresh-3104 (1).png"))); // NOI18N
+        getContentPane().add(refresh_bt_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 40, 30, 30));
+
+        refresh_bt_1.setForeground(new java.awt.Color(102, 102, 102));
+        refresh_bt_1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rodrigoservicecenter/resources/refresh-3104 (1).png"))); // NOI18N
+        refresh_bt_1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refresh_bt_1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(refresh_bt_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, 30, 30));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -188,6 +208,14 @@ public class SellPanel extends javax.swing.JInternalFrame {
     private void selected_clear_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selected_clear_btActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_selected_clear_btActionPerformed
+
+    private void refresh_bt_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refresh_bt_1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_refresh_bt_1ActionPerformed
+
+    private void add_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_btActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_add_btActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -206,6 +234,8 @@ public class SellPanel extends javax.swing.JInternalFrame {
     private javax.swing.JTextField mobile_number;
     private javax.swing.JTextField payment;
     private javax.swing.JSpinner quantity;
+    private javax.swing.JButton refresh_bt_1;
+    private javax.swing.JButton refresh_bt_2;
     private javax.swing.JButton selected_clear_bt;
     private javax.swing.JButton selected_delete_bt;
     private javax.swing.JTextArea selected_item_quantity;
