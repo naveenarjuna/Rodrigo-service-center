@@ -71,7 +71,9 @@ public class CustomerController {
         return vehicleModel.updateVehicle(vehicle);
     }
 
-
-
+    public boolean addVehicle(Vehicle vehicle) {
+        VehicleModel vehicleModel = new VehicleModel();
+        return vehicleModel.addVehicle(vehicle);
+    }
 
 }
