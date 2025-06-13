@@ -20,7 +20,8 @@ public class CustomerPanel extends javax.swing.JInternalFrame {
     CustomerController customerController = new CustomerController();
 
     String[] columnNames = {"Username", "Email", "Address", "Contact Number", "Vehicle"};
-    List<Customer> displayedCustomers = new ArrayList<>();
+    List<Customer> displayedCustomers = new ArrayList<>(); // keep reference list
+    DefaultTableModel model = new DefaultTableModel(columnNames, 0); // table model
 
     public CustomerPanel() {
         initComponents();
@@ -407,7 +408,7 @@ public class CustomerPanel extends javax.swing.JInternalFrame {
     private void vehicleModelActionPerformed(java.awt.event.ActionEvent evt) {}
 
     private void search_bt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_bt1ActionPerformed
-        if (search_customer.getText().equals("")) {
+        if (search_customer.getText().isEmpty()) {
             refreshTable();
         } else {
             filterTableByName();
@@ -426,16 +427,16 @@ public class CustomerPanel extends javax.swing.JInternalFrame {
 
             newCustomer.setCustomerId(selectedCustomer.getCustomerId());
 
-            if(newCustomer.getUsername().equals("")){
+            if(newCustomer.getUsername().isEmpty()){
                 newCustomer.setUsername(selectedCustomer.getUsername());
             }
-            if(newCustomer.getPassword().equals("")){
+            if(newCustomer.getPassword().isEmpty()){
                 newCustomer.setPassword(selectedCustomer.getPassword());
             }
-            if(newCustomer.getEmail().equals("")){
+            if(newCustomer.getEmail().isEmpty()){
                 newCustomer.setEmail(selectedCustomer.getEmail());
             }
-            if(newCustomer.getAddress().equals("")){
+            if(newCustomer.getAddress().isEmpty()){
                 newCustomer.setAddress(selectedCustomer.getAddress());
             }
             if(newCustomer.getContactNumber() == 0){
@@ -473,10 +474,10 @@ public class CustomerPanel extends javax.swing.JInternalFrame {
             newVehicle.setVehicleId(selectedVehicle.getVehicleId());
             newVehicle.setCustomer(selectedCustomer);
 
-            if(newVehicle.getModel().equals("")){
+            if(newVehicle.getModel().isEmpty()){
                 newVehicle.setModel(selectedVehicle.getModel());
             }
-            if(newVehicle.getFuelType().equals("")){
+            if(newVehicle.getFuelType().isEmpty()){
                 newVehicle.setFuelType(selectedVehicle.getFuelType());
             }
             if(newVehicle.getLastServicedDate() == null){
@@ -491,7 +492,6 @@ public class CustomerPanel extends javax.swing.JInternalFrame {
 
             if (newVehicle.equals(selectedVehicle)) {
                 JOptionPane.showMessageDialog(this, "No changes were made.");
-                return;
             }
 
         }else{
@@ -501,9 +501,6 @@ public class CustomerPanel extends javax.swing.JInternalFrame {
 
     public void refreshTable() {
         List<Customer> customerList = new CustomerController().getAllCustomers();
-
-        DefaultTableModel model = new DefaultTableModel(columnNames, 0); // table model
-        List<Customer> displayedCustomers = new ArrayList<>(); // keep reference list
 
         for (Customer customer : customerList) {
             Vehicle vehicle = customerController.getVehicleByCustomerId(customer.getCustomerId());
@@ -526,8 +523,6 @@ public class CustomerPanel extends javax.swing.JInternalFrame {
     private void filterTableByName() {
         String searchTerm = search_customer.getText();
         List<Customer> filteredCustomers = customerController.searchCustomers(searchTerm);
-
-        DefaultTableModel model = new DefaultTableModel(columnNames, 0); // table model
 
         for (Customer customer : filteredCustomers) {
             Vehicle vehicle = customerController.getVehicleByCustomerId(customer.getCustomerId());
@@ -570,18 +565,8 @@ public class CustomerPanel extends javax.swing.JInternalFrame {
     }
 
     private void clearFields() {
-        name.setText("");
-        email.setText("");
-        address.setText("");
-        mobile_number.setText("");
-        nic.setText("");
-        password.setText("");
-        vehicleModel.setText("");
-        petrolBt.setSelected(false);
-        dieselBt.setSelected(false);
-        fualOtherBt.setSelected(false);
-        LastServiceDate.setDate(null);
-        yearValue();
+        RegisterPanel registerPanel = new RegisterPanel();
+        registerPanel.clearForm();
     }
 
     private  Customer getCustomer() {
@@ -612,44 +597,6 @@ public class CustomerPanel extends javax.swing.JInternalFrame {
         return vehicle;
     }
 
-    private void yearValue() {
-        carYearScroller.setModel(new javax.swing.SpinnerNumberModel(2000, 1900, 2030, 1));
-    }
-
-
-    /*private boolean validateCustomerForm() {
-        if (name.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Please enter name");
-            return false;
-        } else if (email.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Please enter email");
-            return false;
-        } else if (address.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Please enter address");
-            return false;
-        } else if (mobile_number.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Please enter mobile number");
-            return false;
-        } else if (password.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Please enter password");
-            return false;
-        } else if (vehicleModel.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Please enter vehicle model");
-            return false;
-        } else if (petrolBt.isSelected() == false && dieselBt.isSelected() == false && fualOtherBt.isSelected() == false) {
-            JOptionPane.showMessageDialog(this, "Please select fuel type");
-            return false;
-        } else if (LastServiceDate.getDate() == null) {
-            JOptionPane.showMessageDialog(this, "Please select last service date");
-            return false;
-        }
-        else if (carYearScroller.getValue() == null) {
-            JOptionPane.showMessageDialog(this, "Please select car year");
-            return false;
-        }else {
-            return true;
-        }
-    }*/
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

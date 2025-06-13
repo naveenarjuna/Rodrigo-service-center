@@ -11,6 +11,7 @@ import rodrigoservicecenter.model.entity.Vehicle;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import java.sql.Date;
+import java.util.Objects;
 
 
 public class RegisterPanel extends javax.swing.JInternalFrame {
@@ -303,12 +304,15 @@ public class RegisterPanel extends javax.swing.JInternalFrame {
 
     private void register_btActionPerformed(java.awt.event.ActionEvent evt) {
 
-        if (validateCustomerForm() == true) {
+        if (validateCustomerForm()) {
 
             Customer customer = getCustomer();
             CustomerController customerController = new CustomerController();
             Customer customerData = customerController.addCustomer(customer);
+
             if (customerData == null) {
+                JOptionPane.showMessageDialog(this, "Customer Registration Failed");
+            } else {
 
                 JOptionPane.showMessageDialog(this, "Customer Registered Successfully");
 
@@ -321,6 +325,7 @@ public class RegisterPanel extends javax.swing.JInternalFrame {
                 }
 
             }
+
         }else {
             JOptionPane.showMessageDialog(this, "Please fill all the fields");
         }
@@ -357,25 +362,25 @@ public class RegisterPanel extends javax.swing.JInternalFrame {
     }
 
     private boolean validateCustomerForm() {
-        if (name.getText().equals("")) {
+        if (name.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter name");
             return false;
-        } else if (email.getText().equals("")) {
+        } else if (email.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter email");
             return false;
-        } else if (address.getText().equals("")) {
+        } else if (address.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter address");
             return false;
-        } else if (mobile_number.getText().equals("")) {
+        } else if (mobile_number.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter mobile number");
             return false;
-        } else if (password.getText().equals("")) {
+        } else if (password.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter password");
             return false;
-        } else if (vehicleModel.getText().equals("")) {
+        } else if (vehicleModel.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter vehicle model");
             return false;
-        } else if (petrolBt.isSelected() == false && dieselBt.isSelected() == false && fualOtherBt.isSelected() == false) {
+        } else if (!petrolBt.isSelected() && !dieselBt.isSelected() && !fualOtherBt.isSelected()) {
             JOptionPane.showMessageDialog(this, "Please select fuel type");
             return false;
         } else if (LastServiceDate.getDate() == null) {
@@ -395,7 +400,7 @@ public class RegisterPanel extends javax.swing.JInternalFrame {
         }
     }
 
-    private void clearForm() {
+    protected void clearForm() {
         name.setText("");
         email.setText("");
         address.setText("");
@@ -416,7 +421,7 @@ public class RegisterPanel extends javax.swing.JInternalFrame {
     }
 
     private int getMileage() {
-        String mileage = mileage_combo.getSelectedItem().toString();
+        String mileage = Objects.requireNonNull(mileage_combo.getSelectedItem()).toString();
         switch (mileage) {
             case "0 - 10,000 miles":
                 mileage = "10000";
