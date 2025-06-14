@@ -500,11 +500,10 @@ public class CustomerPanel extends javax.swing.JInternalFrame {
     }
 
     public void refreshTable() {
-        List<Customer> customerList = new CustomerController().getAllCustomers();
+        List<Customer> customerList = customerController.getAllCustomers();
 
         for (Customer customer : customerList) {
             Vehicle vehicle = customerController.getVehicleByCustomerId(customer.getCustomerId());
-
             Object[] rowData = {
                     customer.getUsername(),
                     customer.getEmail(),
@@ -515,6 +514,7 @@ public class CustomerPanel extends javax.swing.JInternalFrame {
 
             model.addRow(rowData);
             displayedCustomers.add(customer); // track customer corresponding to row
+
         }
 
         customers.setModel(model);

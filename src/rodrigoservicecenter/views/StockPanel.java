@@ -1,10 +1,18 @@
 
 package rodrigoservicecenter.views;
 
+import rodrigoservicecenter.controller.ProductController;
+import rodrigoservicecenter.model.entity.Product;
+
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.table.DefaultTableModel;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class StockPanel extends javax.swing.JInternalFrame {
+
+    ProductController pc = new ProductController();
 
   
     public StockPanel() {
@@ -12,6 +20,18 @@ public class StockPanel extends javax.swing.JInternalFrame {
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0)); 
         BasicInternalFrameUI ui= (BasicInternalFrameUI) this.getUI(); 
         ui.setNorthPane (null);
+
+        jComboBox1.removeAllItems();
+
+        jComboBox1.addItem("All");
+        jComboBox1.addItem("New York");
+        jComboBox1.addItem("Chicago");
+        jComboBox1.addItem("Los Angeles");
+        jComboBox1.addItem("Houston");
+        jComboBox1.addItem("Miami");
+
+        refreshTable(pc.getAllProducts());
+
     }
 
    
@@ -183,14 +203,39 @@ public class StockPanel extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
+        refreshTable(pc.productSearch(jTextField2.getText(),jComboBox1.getSelectedIndex()));
+    }
 
-    private void refresh_bt_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refresh_bt_2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_refresh_bt_2ActionPerformed
+    private void refresh_bt_2ActionPerformed(java.awt.event.ActionEvent evt) {
+        refreshTable(pc.getAllProducts());
+    }
 
+    public void refreshTable(List<Product> products) {
+        String[] colmnNames = {"Product Name", "Category", "Brand", "Description", "Vehicle Compatibility", "Outlet", "Price"};
+        DefaultTableModel model = new DefaultTableModel(colmnNames, 0);
+
+        List<Product> displayedProducts = new ArrayList<>();
+
+        for(Product product : products) {
+            Object[] rowData = {
+                product.getProductName(),
+                product.getCategory(),
+                product.getBrand(),
+                product.getDescription(),
+                product.getVehicleCompatibility(),
+                product.getOutlet().getLocation(),
+                product.getUnitPrice()
+            };
+
+            model.addRow(rowData);
+            displayedProducts.add(product);
+
+        }
+
+        jTable1.setModel(model);
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;

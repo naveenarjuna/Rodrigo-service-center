@@ -24,8 +24,8 @@ public class ServiceOutletModel {
 
             if (rs.next()) {
                 int outletId = rs.getInt("outletId");
-                String name = rs.getString("name");
-                String address = rs.getString("address");
+                String name = rs.getString("outletName");
+                String address = rs.getString("location");
                 int contactNumber = rs.getInt("contactNumber");
                 String email = rs.getString("email");
 

@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ProductController {
 
-    public List<Product> getAllProducts(Product product){
+    public List<Product> getAllProducts(){
         ProductModel productModel = new ProductModel();
         return productModel.getAllProducts();
     }
@@ -20,6 +20,11 @@ public class ProductController {
     public List<Product> getProductsByOutletId(int id){
         ProductModel productModel = new ProductModel();
         return productModel.getProductsByOutletId(id);
+    }
+
+    public List<Product> productSearch(String Keyword, int outletId){
+        ProductModel productModel = new ProductModel();
+        return productModel.searchProducts(Keyword, outletId);
     }
 
 }
