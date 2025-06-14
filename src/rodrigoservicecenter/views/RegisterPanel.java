@@ -6,6 +6,7 @@ package rodrigoservicecenter.views;
 
 import rodrigoservicecenter.controller.CustomerController;
 import rodrigoservicecenter.model.entity.Customer;
+import rodrigoservicecenter.model.entity.Employee;
 import rodrigoservicecenter.model.entity.Vehicle;
 
 import javax.swing.*;
@@ -16,7 +17,7 @@ import java.util.Objects;
 
 public class RegisterPanel extends javax.swing.JInternalFrame {
 
-    public RegisterPanel() {
+    public RegisterPanel(Employee employee) {
         initComponents();
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0)); 
         BasicInternalFrameUI ui= (BasicInternalFrameUI) this.getUI(); 

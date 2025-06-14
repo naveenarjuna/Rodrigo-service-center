@@ -13,8 +13,8 @@ public class LoginForm extends javax.swing.JFrame {
         setUndecorated(true); // Remove title bar
         initComponents();
 
-        jPasswordField1.setText("");
-        MyTextField.setText("");
+        jPasswordField1.setText("123");
+        MyTextField.setText("john doe");
 
     }
 
@@ -192,17 +192,11 @@ public class LoginForm extends javax.swing.JFrame {
             // Login failed
             javax.swing.JOptionPane.showMessageDialog(this, "Invalid username or password", "Login Failed", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }
 
-    private void MyTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MyTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_MyTextFieldActionPerformed
+    private void MyTextFieldActionPerformed(java.awt.event.ActionEvent evt) {}
 
-    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_jLabel6MouseClicked
- 
-    
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField MyTextField;

@@ -7,7 +7,7 @@ import java.sql.*;
 
 public class InvoiceModel {
 
-    public boolean createInvoice(Invoice invoice) {
+    public Invoice createInvoice(Invoice invoice) {
         connect db = new connect();
         Connection con = db.createConnection();
 
@@ -26,22 +26,27 @@ public class InvoiceModel {
                 invoiceId = rs.getInt(1);
             }
 
-            // Save products
-            for (Product p : invoice.getProducts()) {
-                InvoiceProductModel ipc = new InvoiceProductModel();
-                ipc.createInvoiceProduct(new InvoiceProduct(0, invoiceId, p, 1));
-            }
+            /*if(invoice.getProducts().isEmpty() && invoice.getServices().isEmpty()){
+                System.out.println("Nothing Selected");
+                return null;
+            } else if(invoice.getProducts().isEmpty() && !invoice.getServices().isEmpty()){
+                // Save products
+                for (Product p : invoice.getProducts()) {
+                    InvoiceProductModel ipc = new InvoiceProductModel();
+                    ipc.createInvoiceProduct(new InvoiceProduct(0, invoiceId, p, 1));
+                }
+            } else if(!invoice.getProducts().isEmpty() && invoice.getServices().isEmpty()){
+                // Save services
+                for (Service s : invoice.getServices()) {
+                    InvoiceServiceModel isc = new InvoiceServiceModel();
+                    isc.createInvoiceService(new InvoiceService(0, invoiceId, s));
+                }
+            }*/
 
-            // Save services
-            for (Service s : invoice.getServices()) {
-                InvoiceServiceModel isc = new InvoiceServiceModel();
-                isc.createInvoiceService(new InvoiceService(0, invoiceId, s));
-            }
-
-            return true;
+            return invoice;
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
+            return null;
         }
 
 

@@ -6,6 +6,7 @@ package rodrigoservicecenter.views;
 
 import rodrigoservicecenter.controller.CustomerController;
 import rodrigoservicecenter.model.entity.Customer;
+import rodrigoservicecenter.model.entity.Employee;
 import rodrigoservicecenter.model.entity.Vehicle;
 
 import javax.swing.*;
@@ -17,14 +18,20 @@ import java.util.List;
 
 public class CustomerPanel extends javax.swing.JInternalFrame {
 
+    Employee employee;
+
     CustomerController customerController = new CustomerController();
 
     String[] columnNames = {"Username", "Email", "Address", "Contact Number", "Vehicle"};
     List<Customer> displayedCustomers = new ArrayList<>(); // keep reference list
     DefaultTableModel model = new DefaultTableModel(columnNames, 0); // table model
 
-    public CustomerPanel() {
+    public CustomerPanel(Employee gotEmployee) {
+
+        employee = gotEmployee;
+
         initComponents();
+
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0)); 
         BasicInternalFrameUI ui= (BasicInternalFrameUI) this.getUI(); 
         ui.setNorthPane (null);
@@ -565,7 +572,7 @@ public class CustomerPanel extends javax.swing.JInternalFrame {
     }
 
     private void clearFields() {
-        RegisterPanel registerPanel = new RegisterPanel();
+        RegisterPanel registerPanel = new RegisterPanel(employee);
         registerPanel.clearForm();
     }
 

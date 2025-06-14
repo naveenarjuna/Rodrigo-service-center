@@ -51,7 +51,7 @@ public class CustomerController {
         return customerModel.getCustomerByContactNumber(contactNumber);
     }
 
-    public boolean createInvoice(Invoice invoice) {
+    public Invoice createInvoice(Invoice invoice) {
         InvoiceModel invoiceModel = new InvoiceModel();
         return invoiceModel.createInvoice(invoice);
     }

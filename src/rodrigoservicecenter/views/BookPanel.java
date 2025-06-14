@@ -4,13 +4,15 @@
  */
 package rodrigoservicecenter.views;
 
+import rodrigoservicecenter.model.entity.Employee;
+
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 
 public class BookPanel extends javax.swing.JInternalFrame {
 
   
-    public BookPanel() {
+    public BookPanel(Employee employee) {
         initComponents();
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0)); 
         BasicInternalFrameUI ui= (BasicInternalFrameUI) this.getUI(); 
@@ -240,37 +242,33 @@ public class BookPanel extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void serviceidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serviceidActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_serviceidActionPerformed
+    private void serviceidActionPerformed(java.awt.event.ActionEvent evt) {}
 
-    private void update_apponitment_serviceidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_apponitment_serviceidActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_update_apponitment_serviceidActionPerformed
+    private void update_apponitment_serviceidActionPerformed(java.awt.event.ActionEvent evt) {}
 
-    private void clear_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear_btActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clear_btActionPerformed
+    private void clear_btActionPerformed(java.awt.event.ActionEvent evt) {
 
-    private void book_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_book_btActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_book_btActionPerformed
+    }
 
-    private void search_appointment_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_appointment_btActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_search_appointment_btActionPerformed
+    private void book_btActionPerformed(java.awt.event.ActionEvent evt) {
 
-    private void refresh_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refresh_btActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_refresh_btActionPerformed
+    }
 
-    private void update_appointment_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_appointment_btActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_update_appointment_btActionPerformed
+    private void search_appointment_btActionPerformed(java.awt.event.ActionEvent evt) {
 
-    private void cancel_appointment_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_appointment_btActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cancel_appointment_btActionPerformed
+    }
+
+    private void refresh_btActionPerformed(java.awt.event.ActionEvent evt) {
+
+    }
+
+    private void update_appointment_btActionPerformed(java.awt.event.ActionEvent evt) {
+
+    }
+
+    private void cancel_appointment_btActionPerformed(java.awt.event.ActionEvent evt) {
+
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

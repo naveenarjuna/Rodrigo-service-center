@@ -8,11 +8,16 @@ import javax.swing.*;
 
 public class Dashboard extends javax.swing.JFrame {
 
-   
+   Employee employee;
+
     Color DefaultColor, ClickedColor;
     
-    public Dashboard(Employee employee) {
+    public Dashboard(Employee gotEmployee) {
+
+        employee = gotEmployee;
+
         initComponents();
+
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         //setLocationRelativeTo(null);
         setVisible(true);
@@ -428,59 +433,52 @@ public class Dashboard extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {}
 
-    private void sellMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sellMousePressed
-        // TODO add your handling code here:
+    private void sellMousePressed(java.awt.event.MouseEvent evt) {
         sell.setBackground (ClickedColor); 
         book.setBackground (DefaultColor); 
         register.setBackground (DefaultColor); 
         customer.setBackground (DefaultColor); 
         appoinment.setBackground (DefaultColor); 
         stock.setBackground (DefaultColor);
-    }//GEN-LAST:event_sellMousePressed
+    }
 
-    private void bookMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookMousePressed
-        // TODO add your handling code here:
+    private void bookMousePressed(java.awt.event.MouseEvent evt) {
         sell.setBackground (DefaultColor); 
         book.setBackground (ClickedColor); 
         register.setBackground (DefaultColor); 
         customer.setBackground (DefaultColor); 
         appoinment.setBackground (DefaultColor); 
         stock.setBackground (DefaultColor);
-    }//GEN-LAST:event_bookMousePressed
+    }
 
-    private void registerMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerMousePressed
-        // TODO add your handling code here:
+    private void registerMousePressed(java.awt.event.MouseEvent evt) {
         sell.setBackground (DefaultColor); 
         book.setBackground (DefaultColor); 
         register.setBackground (ClickedColor); 
         customer.setBackground (DefaultColor); 
         appoinment.setBackground (DefaultColor); 
         stock.setBackground (DefaultColor);
-    }//GEN-LAST:event_registerMousePressed
+    }
 
-    private void customerMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customerMousePressed
-        // TODO add your handling code here:
+    private void customerMousePressed(java.awt.event.MouseEvent evt) {
         sell.setBackground (DefaultColor); 
         book.setBackground (DefaultColor); 
         register.setBackground (DefaultColor); 
         customer.setBackground (ClickedColor); 
         appoinment.setBackground (DefaultColor); 
         stock.setBackground (DefaultColor);
-    }//GEN-LAST:event_customerMousePressed
+    }
 
-    private void stockMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stockMousePressed
-        // TODO add your handling code here:
+    private void stockMousePressed(java.awt.event.MouseEvent evt) {
         sell.setBackground (DefaultColor); 
         book.setBackground (DefaultColor); 
         register.setBackground (DefaultColor); 
         customer.setBackground (DefaultColor); 
         appoinment.setBackground (DefaultColor); 
         stock.setBackground (ClickedColor);
-    }//GEN-LAST:event_stockMousePressed
+    }
 
     private void jLabel9MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MousePressed
        sell.setBackground (DefaultColor); 
@@ -490,68 +488,61 @@ public class Dashboard extends javax.swing.JFrame {
         appoinment.setBackground (ClickedColor); 
         stock.setBackground (DefaultColor);
         
-        AppoinmentPanel AppoinmentPanel1=new AppoinmentPanel(); 
+        AppoinmentPanel AppoinmentPanel1=new AppoinmentPanel(employee);
         mainpanel.removeAll(); 
         mainpanel.add(AppoinmentPanel1).setVisible(true);
-        // TODO add your handling code here: ///////////////////////////////////////////////miss clicked lable on appoiment check lable
-    }//GEN-LAST:event_jLabel9MousePressed
+        //miss clicked lable on appoiment check lable
+    }
 
-    private void appoinmentMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_appoinmentMousePressed
-        // TODO add your handling code here:
+    private void appoinmentMousePressed(java.awt.event.MouseEvent evt) {
         sell.setBackground (DefaultColor); 
         book.setBackground (DefaultColor); 
         register.setBackground (DefaultColor); 
         customer.setBackground (DefaultColor); 
         appoinment.setBackground (ClickedColor); 
         stock.setBackground (DefaultColor);
-    }//GEN-LAST:event_appoinmentMousePressed
+    }
 
-    private void sellMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sellMouseClicked
-        // TODO add your handling code here:
-        SellPanel SellPanel1=new SellPanel(); 
+    private void sellMouseClicked(java.awt.event.MouseEvent evt) {
+        SellPanel SellPanel1=new SellPanel(employee);
         mainpanel.removeAll(); 
         mainpanel.add(SellPanel1).setVisible(true);
-    }//GEN-LAST:event_sellMouseClicked
+    }
 
-    private void bookMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookMouseClicked
-        // TODO add your handling code here:
-        BookPanel BookPanel1=new BookPanel(); 
+    private void bookMouseClicked(java.awt.event.MouseEvent evt) {
+        BookPanel BookPanel1=new BookPanel(employee);
         mainpanel.removeAll(); 
         mainpanel.add(BookPanel1).setVisible(true);
-    }//GEN-LAST:event_bookMouseClicked
+    }
 
-    private void registerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerMouseClicked
-        // TODO add your handling code here:
-        RegisterPanel RegisterPanel1=new RegisterPanel(); 
+    private void registerMouseClicked(java.awt.event.MouseEvent evt) {
+        RegisterPanel RegisterPanel1=new RegisterPanel(employee);
         mainpanel.removeAll(); 
         mainpanel.add(RegisterPanel1).setVisible(true);
-    }//GEN-LAST:event_registerMouseClicked
+    }
 
-    private void customerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customerMouseClicked
-        // TODO add your handling code here:
-        CustomerPanel CustomerPanel1=new CustomerPanel(); 
+    private void customerMouseClicked(java.awt.event.MouseEvent evt) {
+        CustomerPanel CustomerPanel1=new CustomerPanel(employee);
         mainpanel.removeAll(); 
         mainpanel.add(CustomerPanel1).setVisible(true);
-    }//GEN-LAST:event_customerMouseClicked
+    }
 
-    private void stockMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stockMouseClicked
-        // TODO add your handling code here:
+    private void stockMouseClicked(java.awt.event.MouseEvent evt) {
         StockPanel StockPanel1=new StockPanel(); 
         mainpanel.removeAll(); 
         mainpanel.add(StockPanel1).setVisible(true);
-    }//GEN-LAST:event_stockMouseClicked
+    }
 
-    private void appoinmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_appoinmentMouseClicked
-        // TODO add your handling code here:
-        AppoinmentPanel AppoinmentPanel1=new AppoinmentPanel(); 
+    private void appoinmentMouseClicked(java.awt.event.MouseEvent evt) {
+        AppoinmentPanel AppoinmentPanel1=new AppoinmentPanel(employee);
         mainpanel.removeAll(); 
         mainpanel.add(AppoinmentPanel1).setVisible(true);
         
-    }//GEN-LAST:event_appoinmentMouseClicked
+    }
 
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {
         logout();
-    }//GEN-LAST:event_jLabel4MouseClicked
+    }
 
     private void logout() {
         LoginForm LoginForm1=new LoginForm();
