@@ -3,12 +3,14 @@ package rodrigoservicecenter.model;
 import rodrigoservicecenter.connect.connect;
 import rodrigoservicecenter.model.entity.Department;
 import rodrigoservicecenter.model.entity.Employee;
+import rodrigoservicecenter.model.entity.ServiceOutlet;
 
 import java.sql.*;
 
 public class EmployeeModel {
 
     DepartmentModel departmentModel = new DepartmentModel();
+    ServiceOutletModel serviceOutletModel = new ServiceOutletModel();
 
     // Login
     public Employee loginEmployee(String username, String password) {
@@ -35,10 +37,10 @@ public class EmployeeModel {
                 String address = rs.getString("address");
                 Date dateOfJoining = rs.getDate("dateOfJoining");
                 Date dateOfBirth = rs.getDate("dateOfBirth");
-                String workOutlet = rs.getString("workOutlet");
+                ServiceOutlet outlet = serviceOutletModel.getOutletById(rs.getInt("outletId"));
                 Department department = departmentModel.getDepartmentById(rs.getInt("departmentId"));
 
-                employee = new Employee(employeeId, nic, name, pass,  roleName, phone, email, address, dateOfJoining, dateOfBirth, workOutlet, department);
+                employee = new Employee(employeeId, nic, name, pass,  roleName, phone, email, address, dateOfJoining, dateOfBirth, outlet, department);
             }
 
         } catch (SQLException e) {

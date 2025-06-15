@@ -2,9 +2,6 @@ package rodrigoservicecenter.model;
 
 import rodrigoservicecenter.connect.connect;
 import rodrigoservicecenter.model.entity.Appointment;
-import rodrigoservicecenter.model.entity.Customer;
-import rodrigoservicecenter.model.entity.ServiceOutlet;
-import rodrigoservicecenter.model.entity.Vehicle;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -15,23 +12,24 @@ public class AppointmentModel {
     private final CustomerModel customerModel = new CustomerModel();
     private final VehicleModel vehicleModel = new VehicleModel();
     private final ServiceOutletModel serviceOutletModel = new ServiceOutletModel();
+    private final ServiceModel serviceModel = new ServiceModel();
 
     // Create an appointment
     public boolean createAppointment(Appointment appointment) {
         connect db = new connect();
         Connection con = db.createConnection();
 
-        String sql = "INSERT INTO Appointment (appointmentId, customerId, vehicleId, outletId, status, serviceName, description, scheduledDate, scheduledTime) "
+        String sql = "INSERT INTO Appointment (appointmentId, customerId, vehicleId, outletId, status, serviceId, description, scheduledDate, scheduledTime) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, appointment.getAppointmentId());
             ps.setInt(2, appointment.getCustomer().getCustomerId());
-            ps.setString(3, appointment.getVehicle().getVehicleId());
+            ps.setInt(3, appointment.getVehicle().getVehicleId());
             ps.setInt(4, appointment.getOutlet().getOutletId());
             ps.setString(5, appointment.getStatus());
-            ps.setString(6, appointment.getServiceName());
+            ps.setInt(6, appointment.getService().getServiceId());
             ps.setString(7, appointment.getDescription());
             ps.setDate(8, appointment.getScheduledDate());
             ps.setTime(9, appointment.getScheduledTime());
@@ -51,19 +49,20 @@ public class AppointmentModel {
         connect db = new connect();
         Connection con = db.createConnection();
 
-        String sql = "UPDATE Appointment SET customerId = ?, vehicleId = ?, OutletId = ?, status = ?, serviceName = ?, description = ?, scheduledDate = ?, scheduledTime = ? "
+        String sql = "UPDATE Appointment SET customerId = ?, vehicleId = ?, outletId = ?, status = ?, serviceId = ?, description = ?, scheduledDate = ?, scheduledTime = ? "
                 + "WHERE appointmentId = ?";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, appointment.getCustomer().getCustomerId());
-            ps.setString(2, appointment.getVehicle().getVehicleId());
-            ps.setString(3, appointment.getStatus());
-            ps.setString(4, appointment.getServiceName());
-            ps.setString(5, appointment.getDescription());
-            ps.setDate(6, appointment.getScheduledDate());
-            ps.setTime(7, appointment.getScheduledTime());
-            ps.setInt(8, appointment.getAppointmentId());
+            ps.setInt(2, appointment.getVehicle().getVehicleId());
+            ps.setInt(3, appointment.getOutlet().getOutletId());
+            ps.setString(4, appointment.getStatus());
+            ps.setInt(5, appointment.getService().getServiceId());
+            ps.setString(6, appointment.getDescription());
+            ps.setDate(7, appointment.getScheduledDate());
+            ps.setTime(8, appointment.getScheduledTime());
+            ps.setInt(9, appointment.getAppointmentId());
 
             int rows = ps.executeUpdate();
             return rows > 0;
@@ -115,7 +114,7 @@ public class AppointmentModel {
                         vehicleModel.getVehicleById(rs.getInt("vehicleId")),
                         serviceOutletModel.getOutletById(rs.getInt("OutletId")),
                         rs.getString("status"),
-                        rs.getString("serviceName"),
+                        serviceModel.getServiceById(rs.getInt("serviceId")),
                         rs.getString("description"),
                         rs.getDate("scheduledDate"),
                         rs.getTime("scheduledTime")
@@ -169,7 +168,7 @@ public class AppointmentModel {
                         vehicleModel.getVehicleById(rs.getInt("vehicleId")),
                         serviceOutletModel.getOutletById(rs.getInt("OutletId")),
                         rs.getString("status"),
-                        rs.getString("serviceName"),
+                        serviceModel.getServiceById(rs.getInt("serviceId")),
                         rs.getString("description"),
                         rs.getDate("scheduledDate"),
                         rs.getTime("scheduledTime")
@@ -181,6 +180,68 @@ public class AppointmentModel {
             e.printStackTrace();
         }
 
+        return list;
+    }
+
+    public List<Appointment> getAllAppointments() {
+        connect db = new connect();
+        Connection con = db.createConnection();
+        List<Appointment> list = new ArrayList<>();
+
+        String sql = "SELECT * FROM Appointment";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Appointment appointment = new Appointment(
+                        rs.getInt("appointmentId"),
+                        customerModel.getCustomerById(rs.getInt("customerId")),
+                        vehicleModel.getVehicleById(rs.getInt("vehicleId")),
+                        serviceOutletModel.getOutletById(rs.getInt("OutletId")),
+                        rs.getString("status"),
+                        serviceModel.getServiceById(rs.getInt("serviceId")),
+                        rs.getString("description"),
+                        rs.getDate("scheduledDate"),
+                        rs.getTime("scheduledTime")
+                );
+                list.add(appointment);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<Appointment> getUpcomingAppointments() {
+        connect db = new connect();
+        Connection con = db.createConnection();
+        List<Appointment> list = new ArrayList<>();
+
+        String sql = "SELECT * FROM Appointment WHERE scheduledDate >= CURDATE()";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Appointment appointment = new Appointment(
+                        rs.getInt("appointmentId"),
+                        customerModel.getCustomerById(rs.getInt("customerId")),
+                        vehicleModel.getVehicleById(rs.getInt("vehicleId")),
+                        serviceOutletModel.getOutletById(rs.getInt("OutletId")),
+                        rs.getString("status"),
+                        serviceModel.getServiceById(rs.getInt("serviceId")),
+                        rs.getString("description"),
+                        rs.getDate("scheduledDate"),
+                        rs.getTime("scheduledTime")
+                );
+                list.add(appointment);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return list;
     }
 

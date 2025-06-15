@@ -23,7 +23,7 @@ public class VehicleModel {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                String vehicleId = rs.getString("vehicleId");
+                int vehicleId = rs.getInt("vehicleId");
                 Customer customer = customerModel.getCustomerById(rs.getInt("customerId"));
                 String model = rs.getString("model");
                 int year = rs.getInt("year");
@@ -47,7 +47,7 @@ public class VehicleModel {
         connect db = new connect();
         Connection con = db.createConnection();
 
-        String sql = "SELECT * FROM Vehicles WHERE vehicleId = ?";
+        String sql = "SELECT * FROM Vehicle WHERE vehicleId = ?";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -55,7 +55,7 @@ public class VehicleModel {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                String vehicleId = String.valueOf(rs.getInt("vehicleId"));
+                int vehicleId = rs.getInt("vehicleId");
                 Customer customer = customerModel.getCustomerById(rs.getInt("customerId"));
                 String model = rs.getString("model");
                 int year = rs.getInt("year");
@@ -80,18 +80,17 @@ public class VehicleModel {
         Connection con = db.createConnection();
         boolean success = false;
 
-        String sql = "INSERT INTO Vehicles (vehicleId, customerId, model, year, fuelType, lastServicedDate, mileage) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Vehicle (customerId, model, year, fuelType, lastServicedDate, mileage) " +
+                "VALUES ( ?, ?, ?, ?, ?, ?)";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, vehicle.getVehicleId());
-            ps.setInt(2, vehicle.getCustomer().getCustomerId());
-            ps.setString(3, vehicle.getModel());
-            ps.setInt(4, vehicle.getYear());
-            ps.setString(5, vehicle.getFuelType());
-            ps.setDate(6, vehicle.getLastServicedDate());
-            ps.setInt(7, vehicle.getMileage());
+            ps.setInt(1, vehicle.getCustomer().getCustomerId());
+            ps.setString(2, vehicle.getModel());
+            ps.setInt(3, vehicle.getYear());
+            ps.setString(4, vehicle.getFuelType());
+            ps.setDate(5, vehicle.getLastServicedDate());
+            ps.setInt(6, vehicle.getMileage());
 
             int rowsInserted = ps.executeUpdate();
             success = rowsInserted > 0;
@@ -108,17 +107,18 @@ public class VehicleModel {
         Connection con = db.createConnection();
         boolean success = false;
 
-        String sql = "UPDATE Vehicles SET customerId = ?, model = ?, year = ?, fuelType = ?, lastServicedDate = ?, mileage = ? WHERE vehicleId = ?";
+        String sql = "UPDATE Vehicle SET customerId = ?, model = ?, year = ?, fuelType = ?, lastServicedDate = ?, mileage = ? WHERE vehicleId = ?";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
+
             ps.setInt(1, vehicle.getCustomer().getCustomerId());
             ps.setString(2, vehicle.getModel());
             ps.setInt(3, vehicle.getYear());
             ps.setString(4, vehicle.getFuelType());
             ps.setDate(5, vehicle.getLastServicedDate());
             ps.setInt(6, vehicle.getMileage());
-            ps.setString(7, vehicle.getVehicleId());
+            ps.setInt(7, vehicle.getVehicleId());
 
             int rowsUpdated = ps.executeUpdate();
             success = rowsUpdated > 0;
@@ -126,7 +126,6 @@ public class VehicleModel {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return success;
     }
 
@@ -135,7 +134,7 @@ public class VehicleModel {
         Connection con = db.createConnection();
         boolean success = false;
 
-        String sql = "DELETE FROM Vehicles WHERE vehicleId = ?";
+        String sql = "DELETE FROM Vehicle WHERE vehicleId = ?";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);

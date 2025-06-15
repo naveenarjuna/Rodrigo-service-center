@@ -13,10 +13,10 @@ public class Employee {
     private String address;
     private Date dateOfJoining;
     private Date dateOfBirth;
-    private String workOutlet;
+    private ServiceOutlet outlet;
     private Department department;
 
-    public Employee(int employeeId, int nic, String name, String password, String roleName, int phone, String email, String address, Date dateOfJoining, Date dateOfBirth, String workOutlet, Department department) {
+    public Employee(int employeeId, int nic, String name, String password, String roleName, int phone, String email, String address, Date dateOfJoining, Date dateOfBirth, ServiceOutlet outlet, Department department) {
         this.employeeId = employeeId;
         this.nic = nic;
         this.name = name;
@@ -27,7 +27,7 @@ public class Employee {
         this.address = address;
         this.dateOfJoining = dateOfJoining;
         this.dateOfBirth = dateOfBirth;
-        this.workOutlet = workOutlet;
+        this.outlet = outlet;
         this.department = department;
     }
 
@@ -103,12 +103,12 @@ public class Employee {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getWorkOutlet() {
-        return workOutlet;
+    public ServiceOutlet getOutlet() {
+        return outlet;
     }
 
-    public void setWorkOutlet(String workOutlet) {
-        this.workOutlet = workOutlet;
+    public void setOutlet(ServiceOutlet outlet) {
+        this.outlet = outlet;
     }
 
     public Department getDepartment() {

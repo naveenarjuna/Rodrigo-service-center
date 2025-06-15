@@ -11,6 +11,7 @@ import rodrigoservicecenter.model.entity.Vehicle;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.text.*;
 import java.sql.Date;
 import java.util.Objects;
 
@@ -18,7 +19,9 @@ import java.util.Objects;
 public class RegisterPanel extends javax.swing.JInternalFrame {
 
     public RegisterPanel(Employee employee) {
+
         initComponents();
+
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0)); 
         BasicInternalFrameUI ui= (BasicInternalFrameUI) this.getUI(); 
         ui.setNorthPane (null);
@@ -321,6 +324,7 @@ public class RegisterPanel extends javax.swing.JInternalFrame {
 
                 if (customerController.addVehicle(vehicle)) {
                     JOptionPane.showMessageDialog(this, "Vehicle Registered Successfully");
+                    clearForm();
                 } else {
                     JOptionPane.showMessageDialog(this, "Vehicle Registration Failed");
                 }
@@ -341,12 +345,12 @@ public class RegisterPanel extends javax.swing.JInternalFrame {
         //customer.setNic(nic.getText());
         customer.setContactNumber(Integer.parseInt(mobile_number.getText()));
         customer.setPassword(password.getText());
+        customer.setRegistrationDate(new Date(System.currentTimeMillis()));
         return customer;
     }
 
     private Vehicle getVehicle(Customer customerData) {
         Vehicle vehicle = new Vehicle();
-        vehicle.setVehicleId("V" + customerData.getCustomerId());
         vehicle.setCustomer(customerData);
         vehicle.setModel(vehicleModel.getText());
         vehicle.setYear((int)carYearScroller.getValue());
@@ -357,7 +361,14 @@ public class RegisterPanel extends javax.swing.JInternalFrame {
         } else {
             vehicle.setFuelType("Other");
         }
-        vehicle.setLastServicedDate((Date) LastServiceDate.getDate());
+        // Get java.util.Date from JDateChooser
+        java.util.Date utilDate = LastServiceDate.getDate();
+
+        // Convert to java.sql.Date
+        java.sql.Date sqlDate = utilDate != null ? new java.sql.Date(utilDate.getTime()) : null;
+
+        // Set the converted date
+        vehicle.setLastServicedDate(sqlDate);
         vehicle.setMileage(getMileage());
         return vehicle;
     }
@@ -401,7 +412,7 @@ public class RegisterPanel extends javax.swing.JInternalFrame {
         }
     }
 
-    protected void clearForm() {
+    private void clearForm() {
         name.setText("");
         email.setText("");
         address.setText("");

@@ -389,9 +389,7 @@ public class SellPanel extends javax.swing.JInternalFrame {
             model.addRow(rowData);
             displayedProducts.add(product);
         }
-
         items.setModel(model);
-
     }
 
     private Product getSelectedProduct() {

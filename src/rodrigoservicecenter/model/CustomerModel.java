@@ -14,22 +14,27 @@ public class CustomerModel {
         connect db = new connect();
         Connection con = db.createConnection();
 
-        String sql = "INSERT INTO Customers (customerId, username, password, contactNumber, email, address, registrationDate) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Customers (username, password, contactNumber, email, address, registrationDate) VALUES (?, ?, ?, ?, ?, ?)";
 
         try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, customer.getCustomerId());
-            ps.setString(2, customer.getUsername());
-            ps.setString(3, customer.getPassword());
-            ps.setInt(4, customer.getContactNumber());
-            ps.setString(5, customer.getEmail());
-            ps.setString(6, customer.getAddress());
-            ps.setDate(7, new Date(customer.getRegistrationDate().getTime()));
+            // Enable retrieval of auto-generated keys
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, customer.getUsername());
+            ps.setString(2, customer.getPassword());
+            ps.setInt(3, customer.getContactNumber());
+            ps.setString(4, customer.getEmail());
+            ps.setString(5, customer.getAddress());
+            ps.setDate(6, new Date(customer.getRegistrationDate().getTime()));
 
             int rowsInserted = ps.executeUpdate();
 
             if (rowsInserted > 0) {
-                return customer;
+                ResultSet rs = ps.getGeneratedKeys();
+                if (rs.next()) {
+                    int generatedId = rs.getInt(1);
+                    customer.setCustomerId(generatedId); // ✅ Set the generated ID
+                    return customer;
+                }
             }
 
         } catch (SQLException e) {
@@ -38,6 +43,7 @@ public class CustomerModel {
 
         return null;
     }
+
 
 
     // Get all customers

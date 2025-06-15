@@ -1,8 +1,10 @@
 package rodrigoservicecenter.controller;
 
 import rodrigoservicecenter.model.AppointmentModel;
+import rodrigoservicecenter.model.ServiceModel;
 import rodrigoservicecenter.model.ServiceRecordModel;
 import rodrigoservicecenter.model.entity.Appointment;
+import rodrigoservicecenter.model.entity.Service;
 import rodrigoservicecenter.model.entity.ServiceRecord;
 
 import java.sql.Date;
@@ -31,9 +33,24 @@ public class AppointmentController{
         return appointmentModel.getAppointmentById(appointmentId);
     }
 
+    public List<Appointment> getAllAppointments(){
+        AppointmentModel appointmentModel = new AppointmentModel();
+        return appointmentModel.getAllAppointments();
+    }
+
     public List<Appointment> searchAppointments(Date date, Time time, Integer outletId){
         AppointmentModel appointmentModel = new AppointmentModel();
         return appointmentModel.searchAppointments(date, time, outletId);
+    }
+
+    public List<Appointment> getupcomingAppointments(){
+        AppointmentModel appointmentModel = new AppointmentModel();
+        return appointmentModel.getUpcomingAppointments();
+    }
+
+    public Service getServiceById(int serviceId){
+        ServiceModel serviceModel = new ServiceModel();
+        return serviceModel.getServiceById(serviceId);
     }
 
     public boolean createServiceRecord(ServiceRecord record){

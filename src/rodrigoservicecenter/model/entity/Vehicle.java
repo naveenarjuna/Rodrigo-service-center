@@ -3,7 +3,7 @@ package rodrigoservicecenter.model.entity;
 import java.sql.Date;
 
 public class Vehicle {
-    private String vehicleId;
+    private int vehicleId;
     private Customer customer;
     private String model;
     private int year;
@@ -11,7 +11,7 @@ public class Vehicle {
     private Date lastServicedDate;
     private int mileage;
 
-    public Vehicle(Customer customer, String fuelType, Date lastServicedDate, int mileage, String model, String vehicleId, int year) {
+    public Vehicle(Customer customer, String fuelType, Date lastServicedDate, int mileage, String model, int vehicleId, int year) {
         this.customer = customer;
         this.fuelType = fuelType;
         this.lastServicedDate = lastServicedDate;
@@ -25,11 +25,11 @@ public class Vehicle {
 
     }
 
-    public String getVehicleId() {
+    public int getVehicleId() {
         return vehicleId;
     }
 
-    public void setVehicleId(String vehicleId) {
+    public void setVehicleId(int vehicleId) {
         this.vehicleId = vehicleId;
     }
 

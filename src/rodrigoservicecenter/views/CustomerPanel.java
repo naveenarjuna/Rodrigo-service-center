@@ -12,7 +12,6 @@ import rodrigoservicecenter.model.entity.Vehicle;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +36,7 @@ public class CustomerPanel extends javax.swing.JInternalFrame {
         ui.setNorthPane (null);
 
         refreshTable();
-        clearFields();
+        clearForm();
 
     }
 
@@ -430,43 +429,28 @@ public class CustomerPanel extends javax.swing.JInternalFrame {
         Customer selectedCustomer = getSelectedCustomer();
 
         if (selectedCustomer != null) {
-            Customer newCustomer = getCustomer();
+            Customer updatedCustomer = getCustomer();
+            updatedCustomer.setCustomerId(selectedCustomer.getCustomerId());
 
-            newCustomer.setCustomerId(selectedCustomer.getCustomerId());
+            // Preserve unchanged fields
+            if (updatedCustomer.getUsername().isEmpty()) updatedCustomer.setUsername(selectedCustomer.getUsername());
+            if (updatedCustomer.getPassword() == null || updatedCustomer.getPassword().isEmpty()) updatedCustomer.setPassword(selectedCustomer.getPassword());
+            if (updatedCustomer.getEmail().isEmpty()) updatedCustomer.setEmail(selectedCustomer.getEmail());
+            if (updatedCustomer.getAddress().isEmpty()) updatedCustomer.setAddress(selectedCustomer.getAddress());
+            if (updatedCustomer.getContactNumber() == 0) updatedCustomer.setContactNumber(selectedCustomer.getContactNumber());
 
-            if(newCustomer.getUsername().isEmpty()){
-                newCustomer.setUsername(selectedCustomer.getUsername());
-            }
-            if(newCustomer.getPassword().isEmpty()){
-                newCustomer.setPassword(selectedCustomer.getPassword());
-            }
-            if(newCustomer.getEmail().isEmpty()){
-                newCustomer.setEmail(selectedCustomer.getEmail());
-            }
-            if(newCustomer.getAddress().isEmpty()){
-                newCustomer.setAddress(selectedCustomer.getAddress());
-            }
-            if(newCustomer.getContactNumber() == 0){
-                newCustomer.setContactNumber(selectedCustomer.getContactNumber());
-            }
-            /*if(newCustomer.getNic() == 0){
-                newCustomer.setNic(selectedCustomer.getNic());
-            }*/
-            newCustomer.setRegistrationDate(selectedCustomer.getRegistrationDate());
+            updatedCustomer.setRegistrationDate(selectedCustomer.getRegistrationDate());
 
-            if (newCustomer.equals(selectedCustomer)) {
-                JOptionPane.showMessageDialog(this, "No changes were made.");
-                return;
-            }
+            boolean success = customerController.updateCustomer(updatedCustomer);
 
-            if (new CustomerController().updateCustomer(newCustomer)) {
+            if (success) {
                 JOptionPane.showMessageDialog(this, "Customer updated successfully.");
                 refreshTable();
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(this, "Failed to update customer.");
             }
 
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Please select a customer to update.");
         }
     }
@@ -475,38 +459,44 @@ public class CustomerPanel extends javax.swing.JInternalFrame {
         Customer selectedCustomer = getSelectedCustomer();
 
         if (selectedCustomer != null) {
-            Vehicle newVehicle = getVehicle(selectedCustomer);
-            Vehicle selectedVehicle = customerController.getVehicleByCustomerId(selectedCustomer.getCustomerId());
+            Vehicle existingVehicle = customerController.getVehicleByCustomerId(selectedCustomer.getCustomerId());
+            Vehicle updatedVehicle = getVehicle(selectedCustomer);
 
-            newVehicle.setVehicleId(selectedVehicle.getVehicleId());
-            newVehicle.setCustomer(selectedCustomer);
+            updatedVehicle.setCustomer(selectedCustomer);
 
-            if(newVehicle.getModel().isEmpty()){
-                newVehicle.setModel(selectedVehicle.getModel());
-            }
-            if(newVehicle.getFuelType().isEmpty()){
-                newVehicle.setFuelType(selectedVehicle.getFuelType());
-            }
-            if(newVehicle.getLastServicedDate() == null){
-                newVehicle.setLastServicedDate(selectedVehicle.getLastServicedDate());
-            }
-            if(newVehicle.getYear() == 0){
-                newVehicle.setYear(selectedVehicle.getYear());
-            }
-            if(newVehicle.getMileage() == 0){
-                newVehicle.setMileage(selectedVehicle.getMileage());
-            }
+            boolean success;
 
-            if (newVehicle.equals(selectedVehicle)) {
-                JOptionPane.showMessageDialog(this, "No changes were made.");
+            if (existingVehicle != null) {
+                updatedVehicle.setVehicleId(existingVehicle.getVehicleId());
+
+                if (vehicleChanged(existingVehicle, updatedVehicle)) {
+                    success = customerController.updateVehicle(updatedVehicle);
+                } else {
+                    JOptionPane.showMessageDialog(this, "No changes were made to the vehicle.");
+                    return;
+                }
+
+            } else {
+                success = customerController.updateVehicle(updatedVehicle);
             }
 
-        }else{
-            JOptionPane.showMessageDialog(this, "Please select a customer to update.");
+            if (success) {
+                JOptionPane.showMessageDialog(this, "Vehicle updated successfully.");
+                refreshTable();
+            } else {
+                JOptionPane.showMessageDialog(this, "Failed to update vehicle.");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select a customer to update vehicle.");
         }
+
     }
 
     public void refreshTable() {
+        displayedCustomers.clear(); // clear before refill
+        model.setRowCount(0);       // reset table rows
+
         List<Customer> customerList = customerController.getAllCustomers();
 
         for (Customer customer : customerList) {
@@ -518,14 +508,12 @@ public class CustomerPanel extends javax.swing.JInternalFrame {
                     customer.getContactNumber(),
                     (vehicle != null) ? vehicle.getModel() : "N/A"
             };
-
             model.addRow(rowData);
-            displayedCustomers.add(customer); // track customer corresponding to row
-
+            displayedCustomers.add(customer); // keep track
         }
-
         customers.setModel(model);
     }
+
 
     private void filterTableByName() {
         String searchTerm = search_customer.getText();
@@ -571,10 +559,6 @@ public class CustomerPanel extends javax.swing.JInternalFrame {
         return null;
     }
 
-    private void clearFields() {
-        RegisterPanel registerPanel = new RegisterPanel(employee);
-        registerPanel.clearForm();
-    }
 
     private  Customer getCustomer() {
         Customer customer = new Customer();
@@ -582,7 +566,9 @@ public class CustomerPanel extends javax.swing.JInternalFrame {
         customer.setEmail(email.getText());
         customer.setAddress(address.getText());
         //customer.setNic(nic.getText());
-        customer.setContactNumber(Integer.parseInt(mobile_number.getText()));
+        if(!mobile_number.getText().isEmpty()){
+            customer.setContactNumber(Integer.parseInt(mobile_number.getText()));
+        }
         return customer;
     }
 
@@ -599,12 +585,40 @@ public class CustomerPanel extends javax.swing.JInternalFrame {
         } else {
             vehicle.setFuelType("Other");
         }
-        vehicle.setLastServicedDate((Date) LastServiceDate.getDate());
+        java.util.Date utilDate = LastServiceDate.getDate();
+        java.sql.Date sqlDate = utilDate != null ? new java.sql.Date(utilDate.getTime()) : null;
+        vehicle.setLastServicedDate(sqlDate);
         vehicle.setMileage(0);
         return vehicle;
     }
 
+    private void clearForm() {
+        name.setText("");
+        email.setText("");
+        address.setText("");
+        mobile_number.setText("");
+        nic.setText("");
+        password.setText("");
+        vehicleModel.setText("");
+        petrolBt.setSelected(false);
+        dieselBt.setSelected(false);
+        fualOtherBt.setSelected(false);
+        LastServiceDate.setDate(null);
+        mileage_combo.setSelectedIndex(0);
+        yearValue();
+    }
 
+    private boolean vehicleChanged(Vehicle v1, Vehicle v2) {
+        return !v1.getModel().equals(v2.getModel()) ||
+                !v1.getFuelType().equals(v2.getFuelType()) ||
+                !v1.getLastServicedDate().equals(v2.getLastServicedDate()) ||
+                v1.getYear() != v2.getYear() ||
+                v1.getMileage() != v2.getMileage();
+    }
+
+    private void yearValue() {
+        carYearScroller.setModel(new javax.swing.SpinnerNumberModel(2000, 1900, 2030, 1));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser LastServiceDate;

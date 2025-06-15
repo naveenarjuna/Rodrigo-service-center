@@ -9,21 +9,25 @@ public class Appointment {
     private Vehicle vehicle;
     private ServiceOutlet outlet;
     private String status;
-    private String serviceName;
+    private Service service;
     private String description;
     private Date scheduledDate;
     private Time scheduledTime;
 
-    public Appointment(int appointmentId, Customer customer, Vehicle vehicle, ServiceOutlet outlet, String status, String serviceName, String description, Date scheduledDate, Time scheduledTime) {
+    public Appointment(int appointmentId, Customer customer, Vehicle vehicle, ServiceOutlet outlet, String status, Service service, String description, Date scheduledDate, Time scheduledTime) {
         this.appointmentId = appointmentId;
         this.customer = customer;
         this.vehicle = vehicle;
         this.outlet = outlet;
         this.status = status;
-        this.serviceName = serviceName;
+        this.service = service;
         this.description = description;
         this.scheduledDate = scheduledDate;
         this.scheduledTime = scheduledTime;
+    }
+
+    public Appointment() {
+
     }
 
     public int getAppointmentId() {
@@ -66,12 +70,12 @@ public class Appointment {
         this.status = status;
     }
 
-    public String getServiceName() {
-        return serviceName;
+    public Service getService() {
+        return service;
     }
 
-    public void setServiceName(String serviceName) {
-        this.serviceName = serviceName;
+    public void setService(Service service) {
+        this.service = service;
     }
 
     public String getDescription() {

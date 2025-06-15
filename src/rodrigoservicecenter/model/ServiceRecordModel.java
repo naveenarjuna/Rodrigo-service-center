@@ -23,7 +23,7 @@ public class ServiceRecordModel {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, record.getRecordId());
             ps.setInt(2, record.getAppointment().getAppointmentId());
-            ps.setString(3, record.getVehicle().getVehicleId());
+            ps.setInt(3, record.getVehicle().getVehicleId());
             ps.setInt(4, record.getCustomer().getCustomerId());
             ps.setInt(5, record.getService().getServiceId());
             ps.setString(6, record.getDescription());
