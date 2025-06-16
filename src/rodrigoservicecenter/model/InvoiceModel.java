@@ -47,10 +47,12 @@ public class InvoiceModel {
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-
-
-
-
     }
 }

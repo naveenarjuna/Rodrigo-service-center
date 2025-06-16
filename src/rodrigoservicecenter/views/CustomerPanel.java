@@ -12,8 +12,13 @@ import rodrigoservicecenter.model.entity.Vehicle;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.AbstractDocument;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DocumentFilter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class CustomerPanel extends javax.swing.JInternalFrame {
 
@@ -35,8 +40,85 @@ public class CustomerPanel extends javax.swing.JInternalFrame {
         BasicInternalFrameUI ui= (BasicInternalFrameUI) this.getUI(); 
         ui.setNorthPane (null);
 
+        ((AbstractDocument) mobile_number.getDocument()).setDocumentFilter(new DocumentFilter() {
+            @Override
+            public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr)
+                    throws BadLocationException {
+                if (string == null) return;
+                if (string.matches("\\d*")) {
+                    super.insertString(fb, offset, string, attr);
+                }
+            }
+
+            @Override
+            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs)
+                    throws BadLocationException {
+                if (text == null) return;
+                if (text.matches("\\d*")) {
+                    super.replace(fb, offset, length, text, attrs);
+                }
+            }
+        });
+
+        ((AbstractDocument) nic.getDocument()).setDocumentFilter(new DocumentFilter() {
+            @Override
+            public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr)
+                    throws BadLocationException {
+                if (string == null) return;
+                if (string.matches("\\d*")) {
+                    super.insertString(fb, offset, string, attr);
+                }
+            }
+
+            @Override
+            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs)
+                    throws BadLocationException {
+                if (text == null) return;
+                if (text.matches("\\d*")) {
+                    super.replace(fb, offset, length, text, attrs);
+                }
+            }
+        });
+
+        mileage_combo.removeAllItems();
+        mileage_combo.addItem("");
+        mileage_combo.addItem("0 - 10,000 miles");
+        mileage_combo.addItem("10,001 - 50,000 miles");
+        mileage_combo.addItem("50,001 - 100,000 miles");
+        mileage_combo.addItem("100,001 - 200,000 miles");
+        mileage_combo.addItem("200,001+ miles");
+
         refreshTable();
         clearForm();
+
+    }
+
+    private int getMileage() {
+        String mileage = Objects.requireNonNull(mileage_combo.getSelectedItem()).toString();
+        switch (mileage) {
+            case "":
+                mileage = "0";
+                break;
+            case "0 - 10,000 miles":
+                mileage = "10000";
+                break;
+            case "10,001 - 50,000 miles":
+                mileage = "50000";
+                break;
+            case "50,001 - 100,000 miles":
+                mileage = "100000";
+                break;
+            case "100,001 - 200,000 miles":
+                mileage = "200000";
+                break;
+            case "200,001+ miles":
+                mileage = "500000";
+                break;
+            default:
+                break;
+        }
+
+        return Integer.parseInt(mileage);
 
     }
 
@@ -464,19 +546,19 @@ public class CustomerPanel extends javax.swing.JInternalFrame {
 
             updatedVehicle.setCustomer(selectedCustomer);
 
-            boolean success;
+            boolean success = false;
 
-            if (existingVehicle != null) {
-                updatedVehicle.setVehicleId(existingVehicle.getVehicleId());
-
-                if (vehicleChanged(existingVehicle, updatedVehicle)) {
-                    success = customerController.updateVehicle(updatedVehicle);
-                } else {
-                    JOptionPane.showMessageDialog(this, "No changes were made to the vehicle.");
-                    return;
-                }
-
+            if (existingVehicle == null) {
+                JOptionPane.showMessageDialog(this, "Please select a vehicle to update.");
+                success = false;
             } else {
+                updatedVehicle.setVehicleId(existingVehicle.getVehicleId());
+                if (updatedVehicle.getModel().isEmpty()) updatedVehicle.setModel(existingVehicle.getModel());
+                if (updatedVehicle.getYear() == 0) updatedVehicle.setYear(existingVehicle.getYear());
+                if (updatedVehicle.getFuelType().isEmpty()) updatedVehicle.setFuelType(existingVehicle.getFuelType());
+                if (updatedVehicle.getLastServicedDate() == null) updatedVehicle.setLastServicedDate(existingVehicle.getLastServicedDate());
+                if (updatedVehicle.getMileage() == 0) updatedVehicle.setMileage(existingVehicle.getMileage());
+
                 success = customerController.updateVehicle(updatedVehicle);
             }
 
@@ -566,9 +648,8 @@ public class CustomerPanel extends javax.swing.JInternalFrame {
         customer.setEmail(email.getText());
         customer.setAddress(address.getText());
         //customer.setNic(nic.getText());
-        if(!mobile_number.getText().isEmpty()){
-            customer.setContactNumber(Integer.parseInt(mobile_number.getText()));
-        }
+        customer.setPassword(password.getText());
+        customer.setContactNumber(Integer.parseInt(mobile_number.getText()));
         return customer;
     }
 
@@ -582,13 +663,15 @@ public class CustomerPanel extends javax.swing.JInternalFrame {
             vehicle.setFuelType("Petrol");
         } else if (dieselBt.isSelected()) {
             vehicle.setFuelType("Diesel");
-        } else {
+        } else if (fualOtherBt.isSelected()) {
             vehicle.setFuelType("Other");
+        } else {
+            vehicle.setFuelType("");
         }
         java.util.Date utilDate = LastServiceDate.getDate();
         java.sql.Date sqlDate = utilDate != null ? new java.sql.Date(utilDate.getTime()) : null;
         vehicle.setLastServicedDate(sqlDate);
-        vehicle.setMileage(0);
+        vehicle.setMileage(getMileage());
         return vehicle;
     }
 
@@ -608,16 +691,8 @@ public class CustomerPanel extends javax.swing.JInternalFrame {
         yearValue();
     }
 
-    private boolean vehicleChanged(Vehicle v1, Vehicle v2) {
-        return !v1.getModel().equals(v2.getModel()) ||
-                !v1.getFuelType().equals(v2.getFuelType()) ||
-                !v1.getLastServicedDate().equals(v2.getLastServicedDate()) ||
-                v1.getYear() != v2.getYear() ||
-                v1.getMileage() != v2.getMileage();
-    }
-
     private void yearValue() {
-        carYearScroller.setModel(new javax.swing.SpinnerNumberModel(2000, 1900, 2030, 1));
+        carYearScroller.setModel(new javax.swing.SpinnerNumberModel(0, 0, 2030, 1));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

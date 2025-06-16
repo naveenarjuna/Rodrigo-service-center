@@ -43,6 +43,12 @@ public class ProductModel {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         return products;
@@ -76,6 +82,12 @@ public class ProductModel {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         return product;
@@ -111,8 +123,13 @@ public class ProductModel {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-
         return products;
     }
 
@@ -163,13 +180,15 @@ public class ProductModel {
                 );
                 products.add(product);
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-
         return products;
     }
-
-
 }

@@ -39,8 +39,13 @@ public class CustomerModel {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-
         return null;
     }
 
@@ -73,8 +78,13 @@ public class CustomerModel {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-
         return customers;
     }
 
@@ -106,8 +116,13 @@ public class CustomerModel {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-
         return customer;
     }
 
@@ -137,6 +152,12 @@ public class CustomerModel {
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -159,6 +180,12 @@ public class CustomerModel {
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -189,6 +216,12 @@ public class CustomerModel {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         return customer;
@@ -222,6 +255,12 @@ public class CustomerModel {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         return customers;
@@ -252,6 +291,12 @@ public class CustomerModel {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         return customer;

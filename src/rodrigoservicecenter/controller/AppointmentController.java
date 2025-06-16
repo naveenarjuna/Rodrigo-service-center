@@ -8,6 +8,7 @@ import rodrigoservicecenter.model.entity.Service;
 import rodrigoservicecenter.model.entity.ServiceRecord;
 
 import java.sql.Date;
+import java.sql.SQLException;
 import java.sql.Time;
 import java.util.List;
 

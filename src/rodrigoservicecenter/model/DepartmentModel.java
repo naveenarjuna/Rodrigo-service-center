@@ -26,6 +26,12 @@ public class DepartmentModel {
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return department;
     }

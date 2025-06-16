@@ -40,6 +40,12 @@ public class AppointmentModel {
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -70,6 +76,12 @@ public class AppointmentModel {
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -91,6 +103,12 @@ public class AppointmentModel {
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -122,6 +140,12 @@ public class AppointmentModel {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         return null;
@@ -178,6 +202,12 @@ public class AppointmentModel {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         return list;
@@ -210,13 +240,21 @@ public class AppointmentModel {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
+
         return list;
     }
 
     public List<Appointment> getUpcomingAppointments() {
         connect db = new connect();
         Connection con = db.createConnection();
+
         List<Appointment> list = new ArrayList<>();
 
         String sql = "SELECT * FROM Appointment WHERE scheduledDate >= CURDATE()";
@@ -241,7 +279,14 @@ public class AppointmentModel {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
+
         return list;
     }
 

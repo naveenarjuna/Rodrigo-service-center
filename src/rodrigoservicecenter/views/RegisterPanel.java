@@ -26,6 +26,47 @@ public class RegisterPanel extends javax.swing.JInternalFrame {
         BasicInternalFrameUI ui= (BasicInternalFrameUI) this.getUI(); 
         ui.setNorthPane (null);
 
+        ((AbstractDocument) mobile_number.getDocument()).setDocumentFilter(new DocumentFilter() {
+            @Override
+            public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr)
+                    throws BadLocationException {
+                if (string == null) return;
+                if (string.matches("\\d*")) {
+                    super.insertString(fb, offset, string, attr);
+                }
+            }
+
+            @Override
+            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs)
+                    throws BadLocationException {
+                if (text == null) return;
+                if (text.matches("\\d*")) {
+                    super.replace(fb, offset, length, text, attrs);
+                }
+            }
+        });
+
+        ((AbstractDocument) nic.getDocument()).setDocumentFilter(new DocumentFilter() {
+            @Override
+            public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr)
+                    throws BadLocationException {
+                if (string == null) return;
+                if (string.matches("\\d*")) {
+                    super.insertString(fb, offset, string, attr);
+                }
+            }
+
+            @Override
+            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs)
+                    throws BadLocationException {
+                if (text == null) return;
+                if (text.matches("\\d*")) {
+                    super.replace(fb, offset, length, text, attrs);
+                }
+            }
+        });
+
+
         clearForm();
         yearValue();
 
@@ -361,6 +402,7 @@ public class RegisterPanel extends javax.swing.JInternalFrame {
         } else {
             vehicle.setFuelType("Other");
         }
+
         // Get java.util.Date from JDateChooser
         java.util.Date utilDate = LastServiceDate.getDate();
 
