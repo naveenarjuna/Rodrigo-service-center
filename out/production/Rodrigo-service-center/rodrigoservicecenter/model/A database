@@ -165,4 +165,23 @@ CREATE TABLE invoice (
     FOREIGN KEY (customerId) REFERENCES customer(customerId)
 );
 
+ALTER TABLE appointment
+-- Remove old column
+DROP COLUMN serviceName,
+
+-- Add new column for serviceId
+ADD COLUMN serviceId INT DEFAULT NULL,
+
+-- Add foreign key constraint to service table
+ADD CONSTRAINT fk_appointment_service
+FOREIGN KEY (serviceId) REFERENCES service(serviceId);
+
+ALTER TABLE employee
+-- Rename workOutlet to outletId and change its type to INT
+CHANGE COLUMN workOutlet outletId INT,
+
+-- Add foreign key constraint to serviceoutlet
+ADD CONSTRAINT fk_employee_outlet
+FOREIGN KEY (outletId) REFERENCES serviceoutlet(outletId);
+
 

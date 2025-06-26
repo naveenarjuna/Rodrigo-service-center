@@ -13,8 +13,8 @@ public class LoginForm extends javax.swing.JFrame {
         setUndecorated(true); // Remove title bar
         initComponents();
 
-        jPasswordField1.setText("123");
-        MyTextField.setText("john doe");
+        jPasswordField1.setText("emp123");
+        MyTextField.setText("Mike Smith");
 
     }
 
