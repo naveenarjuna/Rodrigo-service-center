@@ -1,10 +1,5 @@
--- Populate Department table
-INSERT INTO Department (departmentId, departmentName, location) VALUES
-(1, 'Service', 'New York'),
-(2, 'Sales', 'Chicago'),
-(3, 'Inventory', 'Los Angeles'),
-(4, 'Customer Support', 'Houston'),
-(5, 'Administration', 'Miami');
+
+
 
 -- Populate Employee table
 INSERT INTO Employee (employeeId, nic, name, roleName, phone, email, address, dateOfJoining, dateOfBirth, workOutlet, departmentId) VALUES
